@@ -71,3 +71,21 @@ def api_list_service_appointments(request):
             encoder=ServiceAppointmentEncoder,
             safe=False,
         )
+
+
+@require_http_methods(["GET", "POST"])
+def api_list_technicians(request):
+    if request.method == "GET":
+        technicians = Technician.objects.all()
+        return JsonResponse (
+            {"technicians" : technicians},
+            encoder = TechnicianEncoder,
+        )
+    else:
+        content = json.loads(request.body)
+        technician = Technician.objects.create(**content)
+        return JsonResponse (
+            technician,
+            encoder=TechnicianEncoder,
+            safe=False,
+        )
