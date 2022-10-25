@@ -27,7 +27,7 @@ class Technician(models.Model):
 
 
 class ServiceAppointment(models.Model):
-    vin = models.CharField(max_length=17, unique=True)
+    vin = models.CharField(max_length=17)
     owner = models.CharField(max_length=200)
     date = models.DateField(null=True)
     time = models.TimeField(null=True)
