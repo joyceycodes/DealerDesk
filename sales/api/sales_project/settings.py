@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "phonenumber_field",
+    "phonenumbers"
 ]
 
 MIDDLEWARE = [
@@ -47,7 +48,7 @@ MIDDLEWARE = [
 ]
 
 ALLOWED_HOSTS = [
-    "localhost",
+    "localhost", "inventory-api"
 ]
 
 CSRF_TRUSTED_ORIGINS = [
