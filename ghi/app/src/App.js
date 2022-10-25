@@ -14,10 +14,10 @@ function App() {
           <Route path="technicians" >
               <Route path="" />
               <Route path="new" element={<TechnicianForm />} />
+          </Route>
           <Route path="serviceappointments">
               <Route path="" />
-              <Route path="schedule" element={<ServiceAppointmentForm />} />
-          </Route>
+              <Route path="new" element={<ServiceAppointmentForm />} />
           </Route>
         </Routes>
       </div>
