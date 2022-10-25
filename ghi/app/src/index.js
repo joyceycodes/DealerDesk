@@ -8,3 +8,17 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+// async function loadData() {
+
+
+
+
+
+
+
+
+
+// }
+
+// loadData();
