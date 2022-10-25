@@ -73,6 +73,20 @@ def api_list_service_appointments(request):
         )
 
 
+@require_http_methods(["GET"])
+def api_show_service_appointments(request):
+
+    if request.method == "GET":
+        appointments = ServiceAppointment.objects.all()
+        return JsonResponse(
+            {"service appointments" : appointments},
+            encoder=ServiceAppointmentEncoder,
+        )
+
+
+
+
+
 @require_http_methods(["GET", "POST"])
 def api_list_technicians(request):
     if request.method == "GET":
