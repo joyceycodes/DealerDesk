@@ -87,7 +87,7 @@ class ServiceAppointmentForm extends React.Component{
     async componentDidMount() {
         const url = "http://localhost:8080/api/technicians";
 
-        const reponse = await fetch(url);
+        const response = await fetch(url);
 
         if (response.ok) {
             const data = await response.json();
