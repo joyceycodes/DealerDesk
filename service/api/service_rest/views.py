@@ -18,6 +18,9 @@ class TechnicianEncoder(ModelEncoder):
     model = Technician
     properties = ["name", "employee_number", "id"]
 
+    # def get_extra_data(self, o):
+    #     return {"technician": o.name}
+
 
 class ServiceAppointmentEncoder(ModelEncoder):
     model = ServiceAppointment
@@ -49,4 +52,22 @@ def api_list_service_appointments(request):
         return JsonResponse(
             {"service appointments": appointments},
             encoder = ServiceAppointmentEncoder,
+        )
+    else:
+        content = json.loads(request.body)
+
+        try:
+            technician= Technician.objects.get(name=content["technician"])
+            content["technician"] = technician
+        except Technician.DoesNotExist:
+            return JsonResponse(
+                {"message": "Technician is not in system"},
+                status=400,
+            )
+
+        appointment = ServiceAppointment.objects.create(**content)
+        return JsonResponse (
+            appointment,
+            encoder=ServiceAppointmentEncoder,
+            safe=False,
         )
