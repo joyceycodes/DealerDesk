@@ -3,11 +3,19 @@ import MainPage from './MainPage';
 import Nav from './Nav';
 import TechnicianForm from './service/TechnicianForm';
 import ServiceAppointmentForm from './service/ServiceAppointmentForm';
+import SalesPersonForm from './sales/SalesPersonForm';
+import CustomerForm from './sales/CustomerForm';
+import SalesPersonHistoryList from './sales/SalesPersonHistoryList';
+import SalesRecordList from './sales/SalesRecordList';
+import SaleRecordForm from './sales/SaleRecordForm';
 import ServiceAppointmentsList from './service/ServiceAppointmentList';
 
 function App(props) {
 
   if (props.appointments === undefined) {
+    return null;
+  }
+  if (props.salesRecords === undefined) {
     return null;
   }
 
@@ -24,6 +32,18 @@ function App(props) {
           <Route path="serviceappointments">
               <Route path="" element={<ServiceAppointmentsList appointments={props.appointments} />}/>
               <Route path="new" element={<ServiceAppointmentForm />} />
+          </Route>
+          <Route path="salespersons">
+            <Route path="" element={<SalesPersonHistoryList/>}  />
+            <Route path="new" element={<SalesPersonForm/>}  />
+          </Route>
+          <Route path="customers">
+            <Route path="" />
+            <Route path="new" element={<CustomerForm/>}  />
+          </Route>
+          <Route path="salesrecord">
+            <Route path="" element={<SalesRecordList salesRecords={props.salesRecords}/>} />
+            <Route path="new" element={<SaleRecordForm/>}  />
           </Route>
         </Routes>
       </div>

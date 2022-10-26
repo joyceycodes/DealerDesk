@@ -13,7 +13,7 @@ def api_sales_persons(request):
     if request.method == "GET":
         sales_persons = SalesPerson.objects.all()
         return JsonResponse(
-            {"Sales Persons": sales_persons}, 
+            {"sales_persons": sales_persons}, 
             encoder=SalesPersonListEncoder
         )
     else:
@@ -39,7 +39,7 @@ def api_customers(request):
     if request.method == "GET":
         customers = Customer.objects.all()
         return JsonResponse(
-            {"Sales Persons": customers}, 
+            {"customers": customers}, 
             encoder=CustomerListEncoder
         )
     else:
@@ -64,7 +64,7 @@ def api_sales_records(request):
     if request.method == "GET":
         sales_records = SaleRecord.objects.all()
         return JsonResponse(
-            {"Sale Records": sales_records}, 
+            {"sales_records": sales_records}, 
             encoder=SaleRecordListEncoder
         )
     else:
