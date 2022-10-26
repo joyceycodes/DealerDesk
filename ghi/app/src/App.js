@@ -6,7 +6,7 @@ import ServiceAppointmentForm from './service/ServiceAppointmentForm';
 import SalesPersonForm from './sales/SalesPersonForm';
 import CustomerForm from './sales/CustomerForm';
 import SalesPersonHistoryList from './sales/SalesPersonHistoryList';
-import SalesList from './sales/SalesList';
+import SalesRecordList from './sales/SalesRecordList';
 import SaleRecordForm from './sales/SaleRecordForm';
 
 function App() {
@@ -32,8 +32,8 @@ function App() {
             <Route path="" />
             <Route path="new" element={<CustomerForm/>}  />
           </Route>
-          <Route path="salesrecords">
-            <Route path="" element={<SalesList/>} />
+          <Route path="salesrecord">
+            <Route path="" element={<SalesRecordList/>} />
             <Route path="new" element={<SaleRecordForm/>}  />
           </Route>
         </Routes>
