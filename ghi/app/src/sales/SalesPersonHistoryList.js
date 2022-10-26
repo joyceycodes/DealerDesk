@@ -4,8 +4,8 @@ function SalesPersonHistoryList(props) {
     const [selectSalesPerson, setSelectSalesPerson] = useState("");
 
     return (
-     <div>
-        <div className="row">
+        <div>
+            <div className="row">
                 <div className="col-12">
                     <div>
                         <h1>Sales person history</h1>
@@ -13,10 +13,10 @@ function SalesPersonHistoryList(props) {
                         <div className="mb-3">
                             <select value={selectSalesPerson} onChange={(event) => setSelectSalesPerson(event.target.value)} required id="salesPerson" name="salesPerson" className="form-select">
                                 <option value="">Choose a sales person</option>
-                                {props.salesRecords.map(saleRecord => {
+                                {props.salesPersons.map(salePerson => {
                                     return ( 
-                                        <option value={saleRecord.sales_person.employee_number} key={saleRecord.automobile.vin}>
-                                    {saleRecord.sales_person.name}
+                                        <option value={salePerson.employee_number} key={salePerson.employee_number}>
+                                    {salePerson.name}
                                 </option>
                             )
                         })}
