@@ -12,10 +12,7 @@ import ServiceAppointmentsList from './service/ServiceAppointmentList';
 
 function App(props) {
 
-  if (props.appointments === undefined) {
-    return null;
-  }
-  if (props.salesRecords === undefined) {
+  if (props.appointments === undefined || props.salesRecords === undefined) {
     return null;
   }
 
@@ -33,8 +30,8 @@ function App(props) {
               <Route path="" element={<ServiceAppointmentsList appointments={props.appointments} />}/>
               <Route path="new" element={<ServiceAppointmentForm />} />
           </Route>
-          <Route path="salespersons">
-            <Route path="" element={<SalesPersonHistoryList/>}  />
+          <Route path="salesperson">
+            <Route path="" element={<SalesPersonHistoryList salesRecords={props.salesRecords}/>}  />
             <Route path="new" element={<SalesPersonForm/>}  />
           </Route>
           <Route path="customers">

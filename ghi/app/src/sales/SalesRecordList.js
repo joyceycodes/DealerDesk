@@ -22,7 +22,6 @@ function SalesRecordList(props) {
                         <td>{saleRecord.customer.name}</td>
                         <td>{saleRecord.automobile.vin}</td>
                         <td>{saleRecord.sales_price}</td>
-
                     </tr>
                 ) 
             })}
