@@ -24,7 +24,6 @@ class ServiceAppointmentForm extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         const data = { ...this.state };
-        data.time = data.time + ":00";
         delete data.technicians;
         // console.log(data);
 

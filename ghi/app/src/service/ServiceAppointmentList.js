@@ -6,6 +6,7 @@ function ServiceAppointmentsList(props) {
     return (
         <>
             <div>
+                <h2>Scheduled Appointments</h2>
                 <table className="table table-striped table-hover">
                     <thead>
                         <tr>
