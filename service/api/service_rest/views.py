@@ -33,6 +33,7 @@ class ServiceAppointmentEncoder(ModelEncoder):
         "technician",
         "is_vip",
         "is_done",
+        "id",
     ]
 
     encoders= {
@@ -50,7 +51,7 @@ def api_list_service_appointments(request):
     if request.method == "GET":
         appointments = ServiceAppointment.objects.all()
         return JsonResponse(
-            {"service appointments": appointments},
+            {"service_appointments": appointments},
             encoder = ServiceAppointmentEncoder,
         )
     else:
@@ -72,16 +73,32 @@ def api_list_service_appointments(request):
             safe=False,
         )
 
-
-@require_http_methods(["GET"])
-def api_show_service_appointments(request):
+@require_http_methods(["GET", "DELETE"])
+def api_show_service_appointment(request, pk):
 
     if request.method == "GET":
-        appointments = ServiceAppointment.objects.all()
+        serviceAppointment = ServiceAppointment.objects.get(id=pk)
         return JsonResponse(
-            {"service appointments" : appointments},
-            encoder=ServiceAppointmentEncoder,
+            serviceAppointment,
+            encoder= ServiceAppointmentEncoder,
+            safe=False,
         )
+    else:
+        count, _ = ServiceAppointment.objects.filter(id=pk).delete()
+        return JsonResponse({"deleted": count>0 })
+
+
+
+
+# @require_http_methods(["GET"])
+# def api_show_service_appointments(request):
+
+#     if request.method == "GET":
+#         appointments = ServiceAppointment.objects.all()
+#         return JsonResponse(
+#             {"service appointments" : appointments},
+#             encoder=ServiceAppointmentEncoder,
+#         )
 
 
 

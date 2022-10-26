@@ -26,7 +26,7 @@ class ServiceAppointmentForm extends React.Component {
         const data = { ...this.state };
         data.time = data.time + ":00";
         delete data.technicians;
-        console.log(data);
+        // console.log(data);
 
         const appointmentUrl = 'http://localhost:8080/api/serviceappointments/';
         const fetchConfig = {
@@ -38,7 +38,7 @@ class ServiceAppointmentForm extends React.Component {
           };
 
         const response = await fetch(appointmentUrl, fetchConfig);
-        console.log(response);
+        // console.log(response);
         if (response.ok) {
             const newAppointment = await response.json();
             console.log(newAppointment);
@@ -128,7 +128,7 @@ class ServiceAppointmentForm extends React.Component {
                                     <option value="">Technician</option>
                                     {this.state.technicians.map(technician => {
                                         return (
-                                            <option key={technician.name} value={technician.name}>
+                                            <option key={technician.id} value={technician.name}>
                                                 {technician.name}
                                             </option>
                                         );
