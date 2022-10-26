@@ -15,6 +15,9 @@ function App(props) {
   if (props.appointments === undefined) {
     return null;
   }
+  if (props.salesRecords === undefined) {
+    return null;
+  }
 
   return (
     <BrowserRouter>
@@ -39,7 +42,7 @@ function App(props) {
             <Route path="new" element={<CustomerForm/>}  />
           </Route>
           <Route path="salesrecord">
-            <Route path="" element={<SalesRecordList/>} />
+            <Route path="" element={<SalesRecordList salesRecords={props.salesRecords}/>} />
             <Route path="new" element={<SaleRecordForm/>}  />
           </Route>
         </Routes>
