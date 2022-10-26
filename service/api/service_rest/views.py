@@ -93,7 +93,6 @@ def api_show_service_appointment(request, pk):
 
 
 
-
 # @require_http_methods(["GET"])
 # def api_show_service_appointments(request):
 
