@@ -123,3 +123,13 @@ def api_list_technicians(request):
             encoder=TechnicianEncoder,
             safe=False,
         )
+
+
+@require_http_methods(["GET"])
+def api_list_automobileVOs(request):
+    if request.method == "GET":
+        automobileVOs = AutomobileVO.objects.all()
+        return JsonResponse (
+            {"automobileVOs" : automobileVOs},
+            encoder = AutomobileVOEncoder,
+        )

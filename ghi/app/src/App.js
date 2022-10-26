@@ -19,6 +19,10 @@ function App(props) {
     return null;
   }
 
+  if (props.automobileVOs === undefined) {
+    return null;
+  }
+
   return (
     <BrowserRouter>
       <Nav />
@@ -30,7 +34,7 @@ function App(props) {
               <Route path="new" element={<TechnicianForm />} />
           </Route>
           <Route path="serviceappointments">
-              <Route path="" element={<ServiceAppointmentsList appointments={props.appointments} />}/>
+              <Route path="" element={<ServiceAppointmentsList appointments={props.appointments} automobileVOs = {props.automobileVOs} />}/>
               <Route path="new" element={<ServiceAppointmentForm />} />
           </Route>
           <Route path="salespersons">
