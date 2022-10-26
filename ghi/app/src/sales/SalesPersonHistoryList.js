@@ -1,20 +1,21 @@
-
-
+import React, { useState } from "react";
 
 function SalesPersonHistoryList(props) {
+    const [selectSalesPerson, setSelectSalesPerson] = useState("");
+
     return (
-        <div>
-             <div className="row">
+     <div>
+        <div className="row">
                 <div className="col-12">
                     <div>
                         <h1>Sales person history</h1>
                         <form id="create-location-form">
                         <div className="mb-3">
-                            <select required id="salesPerson" name="salesPerson" className="form-select">
+                            <select value={selectSalesPerson} onChange={(event) => setSelectSalesPerson(event.target.value)} required id="salesPerson" name="salesPerson" className="form-select">
                                 <option value="">Choose a sales person</option>
                                 {props.salesRecords.map(saleRecord => {
-                                return ( 
-                                <option value={saleRecord.sales_person.employee_number} key={saleRecord.sales_person.employee_number}>
+                                    return ( 
+                                        <option value={saleRecord.sales_person.employee_number} key={saleRecord.automobile.vin}>
                                     {saleRecord.sales_person.name}
                                 </option>
                             )
@@ -35,7 +36,9 @@ function SalesPersonHistoryList(props) {
                 </tr>
             </thead>
             <tbody>
-                {props.salesRecords.map(saleRecord => {
+                {props.salesRecords
+                .filter(salesPerson => salesPerson.sales_person.employee_number === selectSalesPerson)
+                .map(saleRecord => {
                 return (
                     <tr key={saleRecord.automobile.vin}>
                         <td>{saleRecord.sales_person.name}</td>

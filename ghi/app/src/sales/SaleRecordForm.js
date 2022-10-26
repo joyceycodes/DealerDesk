@@ -1,5 +1,18 @@
 import React from 'react';
 
+// async function handleIsSold(id) {
+//     const hatUrl = `http://localhost:8090/api//${id}`;
+//     console.log(id)
+//     const fetchOptions = {
+//         method: 'put',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//     };
+//     await fetch(hatUrl, fetchOptions);
+//     window.location.reload(true);
+// }
+
 class SaleRecordForm extends React.Component {
     constructor(props) {
         super(props)
