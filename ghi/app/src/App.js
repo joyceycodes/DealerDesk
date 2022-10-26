@@ -6,6 +6,8 @@ import ServiceAppointmentForm from './service/ServiceAppointmentForm';
 import SalesPersonForm from './sales/SalesPersonForm';
 import CustomerForm from './sales/CustomerForm';
 import SalesPersonHistoryList from './sales/SalesPersonHistoryList';
+import SalesList from './sales/SalesList';
+import SaleRecordForm from './sales/SaleRecordForm';
 
 function App() {
   return (
@@ -22,13 +24,17 @@ function App() {
               <Route path="" />
               <Route path="schedule" element={<ServiceAppointmentForm />} />
           </Route>
-          <Route path="salesperson">
+          <Route path="salespersons">
             <Route path="" element={<SalesPersonHistoryList/>}  />
             <Route path="new" element={<SalesPersonForm/>}  />
           </Route>
-          <Route path="customer">
+          <Route path="customers">
             <Route path="" />
             <Route path="new" element={<CustomerForm/>}  />
+          </Route>
+          <Route path="salesrecords">
+            <Route path="" element={<SalesList/>} />
+            <Route path="new" element={<SaleRecordForm/>}  />
           </Route>
         </Routes>
       </div>
