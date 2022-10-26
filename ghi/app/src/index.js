@@ -15,7 +15,7 @@ async function loadData() {
   const salesRecordResponse = await fetch('http://localhost:8090/api/salesrecords/');
   const automobileVOResponse = await fetch ('http://localhost:8080/api/automobileVOs/');
 
-  if (appointmentResponse.ok && salesRecordResponse.ok) {
+  if (appointmentResponse.ok && salesRecordResponse.ok && automobileVOResponse.ok) {
     const appointmentData = await appointmentResponse.json();
     const salesRecordData = await salesRecordResponse.json();
     const automobileVOData = await automobileVOResponse.json();
