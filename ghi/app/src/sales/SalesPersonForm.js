@@ -1,5 +1,5 @@
 import React from "react";
-
+import { redirect } from "react-router-dom";
 class SalesPersonForm extends React.Component {
     constructor(props) {
         super(props)
@@ -43,13 +43,12 @@ class SalesPersonForm extends React.Component {
 
         if (response.ok) {
             await response.json();
-
             const cleared = {
                 name:"",
                 employeeNumber:""
             }
-
             this.setState(cleared);
+            return redirect("/salespersons");
 
         }
     }
