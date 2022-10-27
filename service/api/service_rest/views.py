@@ -65,6 +65,12 @@ def api_list_service_appointments(request):
                 {"message": "Technician is not in system"},
                 status=400,
             )
+        try:
+            AutomobileVO.objects.get(vin=content["vin"])
+            content["is_vip"] = True
+        except AutomobileVO.DoesNotExist:
+            content["is_vip"]=False
+
 
         appointment = ServiceAppointment.objects.create(**content)
         return JsonResponse (
