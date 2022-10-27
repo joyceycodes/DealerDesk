@@ -73,14 +73,14 @@ class SaleRecordForm extends React.Component {
         delete data.automobiles;
         delete data.customers;
         
-        const isSoldUrl = `http://localhost:8090/api/automobileVOs/${data.automobile}/`;
-        const fetchOptions = {
-            method: 'put',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        };
-        const isSoldResponse = await fetch(isSoldUrl, fetchOptions);
+        // const isSoldUrl = `http://localhost:8090/api/automobileVOs/${data.automobile}/`;
+        // const fetchOptions = {
+        //     method: 'put',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        // };
+        // const isSoldResponse = await fetch(isSoldUrl, fetchOptions);
         
         const url = 'http://localhost:8090/api/salesrecords/';
         const fetchConfig = {
@@ -93,7 +93,7 @@ class SaleRecordForm extends React.Component {
         const salesRecordResponse = await fetch(url, fetchConfig);
         
 
-        if (salesRecordResponse.ok && isSoldResponse.ok) {
+        if (salesRecordResponse.ok) { //removed isSoldResponse.ok
 
             console.log("car sold!!!", salesRecordResponse)
 
