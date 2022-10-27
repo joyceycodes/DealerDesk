@@ -17,9 +17,9 @@ async function loadData() {
   const salesAutomobileVOResponse = await fetch('http://localhost:8090/api/automobileVOs/');
   const automobileVOResponse = await fetch ('http://localhost:8080/api/automobileVOs/');
   const manufacturersResponse = await fetch('http://localhost:8100/api/manufacturers/');
-  const vehicleModelResponse = await fetch('http://localhost:8100/api/models/');
+  const vehicleModelsResponse = await fetch('http://localhost:8100/api/models/');
 
-  if (appointmentResponse.ok && salesRecordResponse.ok && salesPersonsResponse && salesAutomobileVOResponse && automobileVOResponse.ok && manufacturersResponse.ok && vehicleModelResponse.ok) {
+  if (appointmentResponse.ok && salesRecordResponse.ok && salesPersonsResponse && salesAutomobileVOResponse && automobileVOResponse.ok && manufacturersResponse.ok && vehicleModelsResponse.ok) {
 
     const appointmentData = await appointmentResponse.json();
     const salesRecordData = await salesRecordResponse.json();
@@ -28,7 +28,7 @@ async function loadData() {
     const salesPersonsData = await salesPersonsResponse.json();
     const salesAutomobileVOData = await salesAutomobileVOResponse.json();
     const manufacturersData = await manufacturersResponse.json();
-    const vehicleModelData = await vehicleModelResponse.json();
+    const vehicleModelsData = await vehicleModelsResponse.json();
     
     // console.log("This is the data variable:", appointmentData);
     // console.log("The appointmentData.service_appointments:", appointmentData.service_appointments)
@@ -39,9 +39,9 @@ async function loadData() {
           salesRecords={salesRecordData.sales_records} 
           automobileVOs = {automobileVOData.automobileVOs} 
           salesPersons={salesPersonsData.sales_persons}
-          salesAutomobileVO={salesAutomobileVOData.autos}
+          salesAutomobileVOs={salesAutomobileVOData.autos}
           manufacturers={manufacturersData.manufacturers}
-          vehicleModel={vehicleModelData.models}
+          vehicleModels={vehicleModelsData.models}
         />
       </React.StrictMode>
     );
@@ -51,7 +51,7 @@ async function loadData() {
       console.error("this is an automobileVO error:", automobileVOResponse);
       console.error("sales persons error:", salesPersonsResponse);
       console.error("manufacturers error:", manufacturersResponse);
-      console.error("vehicle model error:", vehicleModelResponse);
+      console.error("vehicle models error:", vehicleModelsResponse);
     }
 }
 
