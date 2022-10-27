@@ -74,6 +74,7 @@ def api_sales_records(request):
             automobile_vin = content["automobile"]
             automobile = AutomobileVO.objects.get(vin=automobile_vin)
             content["automobile"] = automobile
+            automobile.update(is_sold=True)
 
             sales_person_employee_number= content["sales_person"]
             sales_person = SalesPerson.objects.get(employee_number=sales_person_employee_number)

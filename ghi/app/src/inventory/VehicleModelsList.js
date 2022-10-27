@@ -16,7 +16,7 @@ function VehicleModelsList(props) {
                     <tr key={model.href}>
                         <td>{model.name}</td>
                         <td>{model.manufacturer.name}</td>
-                        <td><img className="img-fluid height:200px" alt={`${model.manufacturer.name} ${model.name}`} src={`${model.picture_url}`} /></td>
+                        <td><img className="img-fluid" style={{ width: 500 }} alt={`${model.manufacturer.name} ${model.name}`} src={`${model.picture_url}`} /></td>
                     </tr>
                 ) 
             })}
