@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from .models import AutomobileVO, SaleRecord, SalesPerson, Customer
-from .encoders import SaleRecordListEncoder, SalesPersonListEncoder, CustomerListEncoder
+from .encoders import AutomobileVOEncoder, SaleRecordListEncoder, SalesPersonListEncoder, CustomerListEncoder
 import json
 from django.views.decorators.http import require_http_methods
 # Create your views here.
@@ -96,3 +96,14 @@ def api_sales_records(request):
             )
             response.status_code = 400
             return response
+
+@require_http_methods(["PUT"])
+def api_automobile_VO(request, vin):
+    AutomobileVO.objects.filter(vin=vin).update(is_sold=True)
+    auto = AutomobileVO.objects.get(vin=vin)
+    return JsonResponse(auto, encoder=AutomobileVOEncoder, safe=False)
+
+@require_http_methods(["GET"])
+def api_automobile_VOs(request):
+    autos = AutomobileVO.objects.all()
+    return JsonResponse({"autos": autos}, encoder=AutomobileVOEncoder, safe=False)

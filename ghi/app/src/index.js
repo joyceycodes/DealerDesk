@@ -14,11 +14,13 @@ async function loadData() {
   const appointmentResponse = await fetch('http://localhost:8080/api/serviceappointments/');
   const salesRecordResponse = await fetch('http://localhost:8090/api/salesrecords/');
   const salesPersonsResponse = await fetch('http://localhost:8090/api/salespersons');
+  const salesAutomobileVOResponse = await fetch('http://localhost:8090/api/automobileVOs/');
 
-  if (appointmentResponse.ok && salesRecordResponse.ok && salesPersonsResponse) {
+  if (appointmentResponse.ok && salesRecordResponse.ok && salesPersonsResponse && salesAutomobileVOResponse) {
     const appointmentData = await appointmentResponse.json();
     const salesRecordData = await salesRecordResponse.json();
     const salesPersonsData = await salesPersonsResponse.json();
+    const salesAutomobileVOData = await salesAutomobileVOResponse.json();
     
     // console.log("This is the data variable:", appointmentData);
     // console.log("The appointmentData.service_appointments:", appointmentData.service_appointments)
@@ -28,7 +30,7 @@ async function loadData() {
           appointments={appointmentData.service_appointments} 
           salesRecords={salesRecordData.sales_records} 
           salesPersons={salesPersonsData.sales_persons}
-     
+          salesAutomobileVO={salesAutomobileVOData.autos}
         />
       </React.StrictMode>
     );

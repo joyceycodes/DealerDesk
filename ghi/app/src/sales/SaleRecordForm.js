@@ -1,18 +1,5 @@
 import React from 'react';
 
-// async function handleIsSold(id) {
-//     const hatUrl = `http://localhost:8090/api//${id}`;
-//     console.log(id)
-//     const fetchOptions = {
-//         method: 'put',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//     };
-//     await fetch(hatUrl, fetchOptions);
-//     window.location.reload(true);
-// }
-
 class SaleRecordForm extends React.Component {
     constructor(props) {
         super(props)
@@ -27,10 +14,11 @@ class SaleRecordForm extends React.Component {
         this.handleCustomerChange = this.handleCustomerChange.bind(this);
         this.handleSalesPriceChange = this.handleSalesPriceChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+
     }
 
     async componentDidMount() {
-        const autoUrl = "http://localhost:8100/api/automobiles/";
+        const autoUrl = "http://localhost:8090/api/automobileVOs/";
         const autoResponse = await fetch(autoUrl);
         if(autoResponse.ok) {
             const data = await autoResponse.json();
@@ -84,9 +72,17 @@ class SaleRecordForm extends React.Component {
         delete data.salesPrice;
         delete data.automobiles;
         delete data.customers;
-
+        
+        const isSoldUrl = `http://localhost:8090/api/automobileVOs/${data.automobile}/`;
+        const fetchOptions = {
+            method: 'put',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+        const isSoldResponse = await fetch(isSoldUrl, fetchOptions);
+        
         const url = 'http://localhost:8090/api/salesrecords/';
-            
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
@@ -94,11 +90,12 @@ class SaleRecordForm extends React.Component {
                 'Content-Type': 'application/json',
             },
         };
+        const salesRecordResponse = await fetch(url, fetchConfig);
         
-        const response = await fetch(url, fetchConfig);
-                
-        if (response.ok) {
-            await response.json();
+
+        if (salesRecordResponse.ok && isSoldResponse.ok) {
+
+            console.log("car sold!!!", salesRecordResponse)
 
             const cleared = {
                 automobile: '',
@@ -107,7 +104,9 @@ class SaleRecordForm extends React.Component {
                 salesPrice: '',
             };
 
+            
             this.setState(cleared);
+            window.location.reload(true);
         }
     }
 
@@ -122,7 +121,9 @@ class SaleRecordForm extends React.Component {
                         <div className="mb-3">
                             <select onChange={this.handleAutomobileChange} required id="automobile" name="automobile" className="form-select">
                                 <option value="">Choose a automobile</option>
-                                {this.state.automobiles.map(automobile=> {
+                                {this.state.automobiles
+                                .filter(automobile => automobile.is_sold===false)
+                                .map(automobile=> {
                                     return (
                                         <option value={automobile.vin} key={automobile.vin}>
                                             {automobile.vin}

@@ -23,7 +23,8 @@ class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
     properties = [
         "vin", 
-        "import_href"
+        "import_href",
+        "is_sold"
     ]
 
 class SaleRecordListEncoder(ModelEncoder):

@@ -30,7 +30,7 @@ function App(props) {
               <Route path="" element={<ServiceAppointmentsList appointments={props.appointments} />}/>
               <Route path="new" element={<ServiceAppointmentForm />} />
           </Route>
-          <Route path="salesperson">
+          <Route path="salespersons">
             <Route path="" element={<SalesPersonHistoryList salesRecords={props.salesRecords} salesPersons={props.salesPersons}/>}  />
             <Route path="new" element={<SalesPersonForm/>}  />
           </Route>
@@ -38,7 +38,7 @@ function App(props) {
             <Route path="" />
             <Route path="new" element={<CustomerForm/>}  />
           </Route>
-          <Route path="salesrecord">
+          <Route path="salesrecords">
             <Route path="" element={<SalesRecordList salesRecords={props.salesRecords}/>} />
             <Route path="new" element={<SaleRecordForm/>}  />
           </Route>

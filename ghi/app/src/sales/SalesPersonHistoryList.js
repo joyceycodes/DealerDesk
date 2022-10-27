@@ -9,10 +9,8 @@ function SalesPersonHistoryList(props) {
                 <div className="col-12">
                     <div>
                         <h1>Sales person history</h1>
-                        <form id="create-location-form">
-                        <div className="mb-3">
-                            <select value={selectSalesPerson} onChange={(event) => setSelectSalesPerson(event.target.value)} required id="salesPerson" name="salesPerson" className="form-select">
-                                <option value="">Choose a sales person</option>
+                        <select value={selectSalesPerson} onChange={(event) => setSelectSalesPerson(event.target.value)} required id="salesPerson" name="salesPerson" className="form-select">
+                            <option value="">Choose a sales person</option>
                                 {props.salesPersons.map(salePerson => {
                                     return ( 
                                         <option value={salePerson.employee_number} key={salePerson.employee_number}>
@@ -20,9 +18,7 @@ function SalesPersonHistoryList(props) {
                                 </option>
                             )
                         })}
-                            </select>
-                        </div>
-                        </form>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -37,7 +33,7 @@ function SalesPersonHistoryList(props) {
             </thead>
             <tbody>
                 {props.salesRecords
-                .filter(salesPerson => salesPerson.sales_person.employee_number === selectSalesPerson)
+                .filter(salesPerson => salesPerson.sales_person.employee_number === selectSalesPerson || selectSalesPerson === "")
                 .map(saleRecord => {
                 return (
                     <tr key={saleRecord.automobile.vin}>
