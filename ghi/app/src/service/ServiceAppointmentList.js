@@ -1,13 +1,14 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import Alert from 'react-bootstrap/Alert';
+
 
 function ServiceAppointmentsList(props) {
-    //console.log(props.appointments.filter(car => car.owner === "Lindsey Carlson"))
     let automobileVOList = [];
     for (let auto of props.automobileVOs) {
         automobileVOList.push(auto["vin"])
     }
 
-    const[searchVIN, setsearchVIN] = useState("");
+    const [searchVIN, setsearchVIN] = useState("");
 
     const upperCaseChange = event => {
         setsearchVIN(event.target.value.toUpperCase());
@@ -19,11 +20,11 @@ function ServiceAppointmentsList(props) {
             <form>
                 <div className="input-group mb-3 mt-4">
                     <input type="text" className="form-control" placeholder="VIN (17 characters)" maxLength={17} aria-label="Recipient's username" aria-describedby="basic-addon2"
-                    value={searchVIN} onChange={upperCaseChange} id="vin" name="vin"/>
+                        value={searchVIN} onChange={upperCaseChange} id="vin" name="vin" />
                     <div className="input-group-append">
                         <button className="btn btn-outline-secondary" type="button">Search <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
-  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-</svg></button>
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg></button>
                     </div>
                 </div>
             </form>
@@ -101,6 +102,8 @@ function ServiceAppointmentsList(props) {
 
 export default ServiceAppointmentsList;
 
+
+
 async function deleteItem(appointmentid) {
     const appointmentUrl = `http://localhost:8080${appointmentid}`;
     const fetchOptions = {
@@ -112,6 +115,8 @@ async function deleteItem(appointmentid) {
     await fetch(appointmentUrl, fetchOptions);
     window.location.reload(true);
 }
+
+
 
 async function finishItem(appointmentid) {
     const appointmentUrl = `http://localhost:8080${appointmentid}`;

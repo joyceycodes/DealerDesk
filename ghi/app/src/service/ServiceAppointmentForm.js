@@ -51,6 +51,8 @@ class ServiceAppointmentForm extends React.Component {
                 reason: "",
             };
             this.setState(cleared);
+            window.location.reload(true);
+
         } else {
         console.log("Not posting correctly")
         }

@@ -2,31 +2,32 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { NavLink } from 'react-router-dom';
 
 function Navigation() {
   return (
     <Navbar className="navbar navbar-expand-lg navbar-dark bg-success">
       <Container>
-        <Navbar.Brand href="#home">CarCar</Navbar.Brand>
+        <Navbar.Brand as={NavLink} to="#home">CarCar</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link as={NavLink} to="/">Home</Nav.Link>
             <NavDropdown title="Sales" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/salespersons">Sales Person</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
+              <NavDropdown.Item as={NavLink} to="/salespersons">Sales Person</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="#action/3.2">
                 Another action
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="#action/3.3">Something</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
+              <NavDropdown.Item as={NavLink} to="#action/3.4">
                 Separated link
               </NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Service" id="basic-nav-dropdown">
-              <NavDropdown.Item href="serviceappointments">View Service Appointments</NavDropdown.Item>
-              <NavDropdown.Item href="serviceappointments/schedule">Schedule a Service Appointment</NavDropdown.Item>
-              <NavDropdown.Item href="technician/new">Register a Technician</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="serviceappointments/">View Service Appointments</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="serviceappointments/schedule/">Schedule a Service Appointment</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="technicians/new/">Register a Technician</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
