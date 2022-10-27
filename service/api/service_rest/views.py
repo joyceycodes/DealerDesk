@@ -73,7 +73,7 @@ def api_list_service_appointments(request):
             safe=False,
         )
 
-@require_http_methods(["GET", "DELETE"])
+@require_http_methods(["GET", "DELETE", "PUT"])
 def api_show_service_appointment(request, pk):
 
     if request.method == "GET":
@@ -83,9 +83,12 @@ def api_show_service_appointment(request, pk):
             encoder= ServiceAppointmentEncoder,
             safe=False,
         )
-    else:
+    elif request.method == "DELETE":
         count, _ = ServiceAppointment.objects.filter(id=pk).delete()
         return JsonResponse({"deleted": count>0 })
+
+    else:
+        ServiceAppointment.objects.filter(id=pk).update(is_done=True)
 
 
 
@@ -119,4 +122,14 @@ def api_list_technicians(request):
             technician,
             encoder=TechnicianEncoder,
             safe=False,
+        )
+
+
+@require_http_methods(["GET"])
+def api_list_automobileVOs(request):
+    if request.method == "GET":
+        automobileVOs = AutomobileVO.objects.all()
+        return JsonResponse (
+            {"automobileVOs" : automobileVOs},
+            encoder = AutomobileVOEncoder,
         )
