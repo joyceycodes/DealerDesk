@@ -3,6 +3,7 @@ import Alert from 'react-bootstrap/Alert';
 
 
 function ServiceAppointmentsList(props) {
+
     let automobileVOList = [];
     for (let auto of props.automobileVOs) {
         automobileVOList.push(auto["vin"])
@@ -19,7 +20,8 @@ function ServiceAppointmentsList(props) {
         <>
             <form>
                 <div className="input-group mb-3 mt-4">
-                    <input type="text" className="form-control" placeholder="VIN (17 characters)" maxLength={17} aria-label="Recipient's username" aria-describedby="basic-addon2"
+
+                    <input type="text" className="form-control" placeholder="Search by VIN (17 characters)" maxLength={17} aria-describedby="basic-addon2"
                         value={searchVIN} onChange={upperCaseChange} id="vin" name="vin" />
                     <div className="input-group-append">
                         <button className="btn btn-outline-secondary" type="button">Search <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
