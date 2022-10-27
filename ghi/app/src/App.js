@@ -11,16 +11,25 @@ import SaleRecordForm from './sales/SaleRecordForm';
 import ServiceAppointmentsList from './service/ServiceAppointmentList';
 import ManufacturersList from './inventory/ManufacturersList';
 import ManufacturerForm from './inventory/ManufacturerForm';
+import VehicleModelForm from './inventory/VehicleModelForm';
+import AutomobilesList from './inventory/AutomobilesList';
+import AutomobileForm from './inventory/AutomobileForm';
+
 
 function App(props) {
 
-  if (props.appointments === undefined || props.salesRecords === undefined) {
+  if (props.appointments === undefined ||
+      props.salesRecords === undefined ||
+      props.automobileVOs === undefined ||
+      props.salesPersons === undefined||
+      props.salesAutomobileVO === undefined ||
+      props.manufacturers === undefined ||
+      props.vehicleModels === undefined ||
+      props.automobiles === undefined ) {
+
     return null;
   }
 
-  if (props.automobileVOs === undefined) {
-    return null;
-  }
 
   return (
     <BrowserRouter>
@@ -51,6 +60,14 @@ function App(props) {
           <Route path="manufacturers">
             <Route path="" element={<ManufacturersList manufacturers={props.manufacturers}/>} />
             <Route path="new" element={<ManufacturerForm/>}  />
+          </Route>
+          <Route path="vehiclemodels/">
+            {/* <Route path="" element={<VehicleModelsList vehicleModels = {props.vehicleModels}/>} /> */}
+            <Route path="new" element={<VehicleModelForm/>}/>
+          </Route>
+          <Route path="automobiles/">
+            <Route path="" element={<AutomobilesList automobiles = {props.automobiles}/>} />
+            <Route path="new" element={<AutomobileForm/>}/>
           </Route>
         </Routes>
       </div>

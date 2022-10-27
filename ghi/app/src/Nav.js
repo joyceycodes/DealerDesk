@@ -14,7 +14,7 @@ function Navigation() {
           <Nav className="me-auto">
             <Nav.Link as={NavLink} to="/">Home</Nav.Link>
             <NavDropdown title="Sales" id="basic-nav-dropdown">
-              <NavDropdown.Item as={NavLink} to="/salespersons">Sales Person</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="salespersons/">Sales Person</NavDropdown.Item>
               <NavDropdown.Item as={NavLink} to="#action/3.2">
                 Another action
               </NavDropdown.Item>
@@ -28,6 +28,11 @@ function Navigation() {
               <NavDropdown.Item as={NavLink} to="serviceappointments/">View Service Appointments</NavDropdown.Item>
               <NavDropdown.Item as={NavLink} to="serviceappointments/schedule/">Schedule a Service Appointment</NavDropdown.Item>
               <NavDropdown.Item as={NavLink} to="technicians/new/">Register a Technician</NavDropdown.Item>
+            </NavDropdown>
+            <NavDropdown title="Inventory" id="basic-nav-dropdown">
+              <NavDropdown.Item as={NavLink} to="vehiclemodels/new/">Add Vehicle Model</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="automobiles/">Show All Automobiles in Inventory</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="automobiles/new/">Add an Automobile to Inventory</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

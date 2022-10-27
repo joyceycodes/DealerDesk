@@ -47,11 +47,6 @@ class SalesPersonForm extends React.Component {
                 employeeNumber:""
             }
             this.setState(cleared);
-<<<<<<< HEAD
-            //return redirect("/salespersons");
-=======
-
->>>>>>> main
 
         }
     }
