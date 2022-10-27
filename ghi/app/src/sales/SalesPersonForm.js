@@ -1,5 +1,4 @@
 import React from "react";
-//import { redirect } from "react-router-dom";
 class SalesPersonForm extends React.Component {
     constructor(props) {
         super(props)
@@ -48,7 +47,11 @@ class SalesPersonForm extends React.Component {
                 employeeNumber:""
             }
             this.setState(cleared);
+<<<<<<< HEAD
             //return redirect("/salespersons");
+=======
+
+>>>>>>> main
 
         }
     }
