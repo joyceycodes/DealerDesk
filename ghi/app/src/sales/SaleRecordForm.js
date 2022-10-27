@@ -61,8 +61,10 @@ class SaleRecordForm extends React.Component {
         const value = event.target.value;
         this.setState({salesPrice: value})
     }
+    
 
     async handleSubmit(event) {
+        console.log(this.state)
         event.preventDefault();
         const data = {...this.state};
         data.sales_person = data.salesPerson;
@@ -72,16 +74,7 @@ class SaleRecordForm extends React.Component {
         delete data.salesPrice;
         delete data.automobiles;
         delete data.customers;
-        
-        // const isSoldUrl = `http://localhost:8090/api/automobileVOs/${data.automobile}/`;
-        // const fetchOptions = {
-        //     method: 'put',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        // };
-        // const isSoldResponse = await fetch(isSoldUrl, fetchOptions);
-        
+                
         const url = 'http://localhost:8090/api/salesrecords/';
         const fetchConfig = {
             method: "post",
@@ -93,20 +86,16 @@ class SaleRecordForm extends React.Component {
         const salesRecordResponse = await fetch(url, fetchConfig);
         
 
-        if (salesRecordResponse.ok) { //removed isSoldResponse.ok
-
-            console.log("car sold!!!", salesRecordResponse)
-
+        if (salesRecordResponse.ok) { 
             const cleared = {
                 automobile: '',
                 customer: '',
                 salesPerson: '',
                 salesPrice: '',
             };
-
-            
             this.setState(cleared);
-            window.location.reload(true);
+            console.log(this.state)
+            // window.location.reload(true);
         }
     }
 

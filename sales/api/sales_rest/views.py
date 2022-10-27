@@ -98,11 +98,6 @@ def api_sales_records(request):
             response.status_code = 400
             return response
 
-# @require_http_methods(["PUT"])
-# def api_automobile_VO(request, vin):
-#     AutomobileVO.objects.filter(vin=vin).update(is_sold=True)
-#     auto = AutomobileVO.objects.get(vin=vin)
-#     return JsonResponse(auto, encoder=AutomobileVOEncoder, safe=False)
 
 @require_http_methods(["GET"])
 def api_automobile_VOs(request):
