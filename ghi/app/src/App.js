@@ -9,8 +9,8 @@ import SalesPersonHistoryList from './sales/SalesPersonHistoryList';
 import SalesRecordList from './sales/SalesRecordList';
 import SaleRecordForm from './sales/SaleRecordForm';
 import ServiceAppointmentsList from './service/ServiceAppointmentList';
-import ManufacturersList from './sales/ManufacturersList';
-import ManufacturerForm from './sales/ManufacturerForm';
+import ManufacturersList from './inventory/ManufacturersList';
+import ManufacturerForm from './inventory/ManufacturerForm';
 
 function App(props) {
 
