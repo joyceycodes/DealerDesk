@@ -35,7 +35,7 @@ function App(props) {
           </Route>
           <Route path="serviceappointments">
               <Route path="" element={<ServiceAppointmentsList appointments={props.appointments} automobileVOs = {props.automobileVOs} />}/>
-              <Route path="new" element={<ServiceAppointmentForm />} />
+              <Route path="schedule" element={<ServiceAppointmentForm />} />
           </Route>
           <Route path="salespersons">
             <Route path="" element={<SalesPersonHistoryList/>}  />
