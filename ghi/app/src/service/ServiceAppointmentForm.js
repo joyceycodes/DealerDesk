@@ -37,7 +37,6 @@ class ServiceAppointmentForm extends React.Component {
 
         const response = await fetch(appointmentUrl, fetchConfig);
         if (response.ok) {
-            const newAppointment = await response.json();
 
             const cleared = {
                 vin: "",

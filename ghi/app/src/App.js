@@ -27,7 +27,7 @@ function App(props) {
   const [ appointments, setAppointments ] = useState([]);
   const [ automobileVOs, setAutomobileVOs ] = useState([]);
   const [ vehicleModels, setVehicleModels ] = useState([]);
-  
+
   async function getSalesRecords(){
     const salesRecordsResponse = await fetch('http://localhost:8090/api/salesrecords/');
     if(salesRecordsResponse.ok){
@@ -83,12 +83,6 @@ async function getAutomobileVOs () {
   }
 }
 
-async function getVehicleModels() {
-  const vehicleModelsResponse = await fetch ('http://localhost:8100/api/models/');
-  if (vehicleModelsResponse.ok) {
-    const { models } = await vehicleModelsResponse.json()
-    setVehicleModels(models)
-  }
 }
 
   useEffect(() => {

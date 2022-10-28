@@ -51,8 +51,6 @@ class VehicleModelForm extends React.Component {
 
         const response = await fetch(vehicleModelUrl, fetchConfig)
         if (response.ok) {
-            const newVehicleModel = await response.json();
-
 
             const cleared = {
                 name: "",
