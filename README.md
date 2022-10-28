@@ -18,7 +18,7 @@ To create a superuser and log into the Admin application for any of the microser
 2. Select 'Open in terminal'
 3. Run `python manage.py createsuperuser' in the container terminal.
 4. Complete the form to set username and password for the superuser. 
-5. Navigate to the corresponding URL for the microservice that you just created a superuser for:
+5. Navigate to the corresponding URL for the microservice that you just created a superuser for to log in sign in:
     - Inventory: http://localhost:8100/admin/
     - Service: http://localhost:8080/admin/
     - Sales: http://localhost:8090/admin/
@@ -125,17 +125,17 @@ We can split the sales microservices into two separate applications - sales API 
 
 Sales API is Django application that houses our models, URLs, and views. It can be accessed on Insomnia on port 8090.
 
-Sales poller is a polling application used to send periodic requests to Inventory API for automobile data. A new automobileVO instance wIt is set to poll every 10 seconds but the time interval may be adjusted in the poll() function in poller.py. 
+Sales poller is a polling application used to send periodic requests to Inventory API for automobile data. A new automobileVO instance is created in the Sales Microservice database for each instance of Automobile in the Inventory database. It is set to poll every 10 seconds but the time interval may be adjusted in the poll() function in poller.py. 
 ### Backend
 #### Models
 Sales API is a RESTful API with the following models and attributes:
 - SalesPerson 
     - name
-    - employee_number(unique value)
+    - employee_number(unique integer value)
 - Customer 
     - name
     - address
-    - phone_number
+    - phone_number(a PhoneNumber field, added django-phonenumber-field and phonenumbers in the requirements.txt. Only verifies inputs as phone numbers in Admin as of right now.)
 - SaleRecord
     - automobile (OneToOne relationship to AutomobileVO model)
     - sales_person(ForeignKey to SalesPerson model)
@@ -144,7 +144,7 @@ Sales API is a RESTful API with the following models and attributes:
 - AutomobileVO 
     - vin(unique value)
     - import_href(unique value)
-    - is_sold(boolean, default=False)
+    - is_sold(boolean value that is default=False. This value gets updated to True once a new Sale Record is created with the corresponding vin number.)
 
 #### Views and URLs
 
@@ -191,13 +191,17 @@ Sales Record:
 Example JSON body to create a new sale record:
 ```json
     {
-    "automobile":"1C3CC5FB2AN110016",
+    "automobile":"1C3CC5FB2AN120174",
     "customer": 1,
-    "sales_person": "Salesy McSalesman",
+    "sales_person": 1908,
     "sales_price": 70000
     }
 ```
 
-
-### Frontend
-#### React
+### Frontend React Application
+To view the Sales Microservice frontend application, navigate to localhost:3000 in your browser. Within the Sales dropdown in the navigation bar is the following:
+- All sales history - Shows a list view of all sales records
+- Individual sales history - Shows a list view of all sales records that may be filtered by sales person upon selecting a sales person in the dropdown menu. 
+- Log a sale - A form to create a new sale record. Only automobiles that have not been sold will be displayed in the dropdown when selecting an automobile. Fill in the form with the automobile, sales person, customer, and sales price. Form clears upon successful sale record submission.
+- Register a sales person - A form to add a new sales person to the team. Takes in name and employee number for the new sales person. Form clears upon successful creation of a sales person.
+- Add a customer - A form to add a potential customer. Takes in name, address, and phone number of the new customer. Form clears upon successful creation of a sales person.
