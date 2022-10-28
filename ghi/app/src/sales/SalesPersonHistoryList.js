@@ -5,7 +5,7 @@ function SalesPersonHistoryList(props) {
 
     return (
         <div>
-            <div className="row">
+            <div className="row mt-3">
                 <div className="col-12">
                     <div>
                         <h1>Sales person history</h1>
@@ -22,7 +22,8 @@ function SalesPersonHistoryList(props) {
                     </div>
                 </div>
             </div>
-            <table className="table table-striped">
+            <div></div>
+            <table className="table table-striped mt-3">
             <thead>
                 <tr>
                     <th>Sales Person</th>

@@ -16,6 +16,7 @@ import VehicleModelForm from './inventory/VehicleModelForm';
 import AutomobilesList from './inventory/AutomobilesList';
 import AutomobileForm from './inventory/AutomobileForm';
 
+import VehicleModelsList from './inventory/VehicleModelsList';
 
 function App(props) {
 
@@ -105,7 +106,7 @@ async function getVehicleModels() {
             <Route path="new" element={<ManufacturerForm/>}  />
           </Route>
           <Route path="vehiclemodels/">
-            {/* <Route path="" element={<VehicleModelsList vehicleModels = {vehicleModels}/>} /> */}
+            <Route path="" element={<VehicleModelsList vehicleModels = {vehicleModels}/>} />
             <Route path="new" element={<VehicleModelForm getVehicleModels={getVehicleModels}/>}/>
           </Route>
           <Route path="automobiles/">

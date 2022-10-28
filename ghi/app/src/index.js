@@ -16,7 +16,6 @@ async function loadData() {
   const salesAutomobileVOResponse = await fetch('http://localhost:8090/api/automobileVOs/');
   const manufacturersResponse = await fetch('http://localhost:8100/api/manufacturers/');
 
-
   if (
       salesRecordResponse.ok &&
       salesPersonsResponse &&
@@ -35,9 +34,8 @@ async function loadData() {
 
           salesRecords={salesRecordData.sales_records}
           salesPersons={salesPersonsData.sales_persons}
-          salesAutomobileVO={salesAutomobileVOData.autos}
+          salesAutomobileVOs={salesAutomobileVOData.autos}
           manufacturers={manufacturersData.manufacturers}
-
         />
       </React.StrictMode>
     );
@@ -47,7 +45,6 @@ async function loadData() {
       console.error("sales persons error:", salesPersonsResponse);
       console.error("sales automobilesVOs error:", salesAutomobileVOResponse);
       console.error("manufacturers error:", manufacturersResponse);
-
     }
 }
 
