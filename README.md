@@ -63,21 +63,21 @@ Vehicle Model:
 
 | Action | Method | URL |
 |--------|--------| -----|
-| List automobiles | GET | (http://localhost:8100/api/models/)
-| Create an automobile | POST | (http://localhost:8100/api/models/)
-| Get a specific automobile | GET | (http://localhost:8100/api/models/:id/)
-| Update a specific automobile | PUT | (http://localhost:8100/api/models/:id/)
-| Delete a specific automobile | DELETE | (http://localhost:8100/api/models/:id/)
+| List vehicle models | GET | (http://localhost:8100/api/models/)
+| Create a vehicle model | POST | (http://localhost:8100/api/models/)
+| Get a specific vehicle model  | GET | (http://localhost:8100/api/models/:id/)
+| Update a specific vehicle model | PUT | (http://localhost:8100/api/models/:id/)
+| Delete a specific vehicle model  | DELETE | (http://localhost:8100/api/models/:id/)
 
 Automobiles:
 
 | Action | Method | URL |
 |--------|--------| -----|
-| List vehicle models | GET | (http://localhost:8100/api/automobiles/)
-| Create a vehicle model | POST | (http://localhost:8100/api/automobiles/)
-| Get a specific vehicle model | GET | (http://localhost:8100/api/automobiles/:vin/)
-| Update a specific vehicle model | PUT | (http://localhost:8100/api/automobiles/:vin/)
-| Delete a specific vehicle model | DELETE | (http://localhost:8100/api/automobiles/:vin/)
+| List automobiles | GET | (http://localhost:8100/api/automobiles/)
+| Create an automobile | POST | (http://localhost:8100/api/automobiles/)
+| Get a specific automobile | GET | (http://localhost:8100/api/automobiles/:vin/)
+| Update a specific automobile | PUT | (http://localhost:8100/api/automobiles/:vin/)
+| Delete a specific automobile | DELETE | (http://localhost:8100/api/automobiles/:vin/)
 
 
 ### React components
@@ -230,8 +230,8 @@ Service Appointment:
 
 ## Sales microservice
 
-Sales microservice is used to handle sales information, including sales persons, customers, sales records and automobiles that are within our inventory. 
-We can split the sales microservice into two parts - sales API and sales poller. 
+Sales microservice is used to handle sales information, including sales persons, customers, sales records and automobiles that are within our inventory.
+We can split the sales microservice into two parts - sales API and sales poller.
 
 Sales API is a RESTful API with the following models and attributes:
 -SalesPerson - name, employee_number(unique value)
@@ -240,5 +240,3 @@ Sales API is a RESTful API with the following models and attributes:
 -AutomobileVO - vin(unique value), import_href(unique value), is_sold(boolean)
 
 Sales poller is a poller used to send periodic requests to Inventory API for automobile data. It is set to poll every 10 seconds but the interval may be adjusted in the poll() function in poller.py.
-
-
