@@ -14,7 +14,8 @@ function Navigation() {
           <Nav className="me-auto">
             <Nav.Link as={NavLink} to="/">Home</Nav.Link>
             <NavDropdown title="Sales" id="basic-nav-dropdown">
-              <NavDropdown.Item as={NavLink} to="salespersons/">View Sales History</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="salesrecords/">All Sales History</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="salespersons/">Individual Sales History</NavDropdown.Item>
               <NavDropdown.Item as={NavLink} to="salesrecords/new">Log a Sale</NavDropdown.Item>
               <NavDropdown.Item as={NavLink} to="salespersons/new/">Register a Sales Person</NavDropdown.Item>
               <NavDropdown.Item as={NavLink} to="customers/new/">Add a Customer</NavDropdown.Item>

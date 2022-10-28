@@ -6,6 +6,10 @@ Team:
 * Joyce - Sales
 
 ## Set up
+Getting started:
+1. In your terminal, git clone this repository to your local computer using this link (https://gitlab.com/joyceyu96/project-beta.git)
+2. Run [docker volume create beta-data] in your terminal. This will create your database.
+3. Run [docker compose up --build] to build the docker image and docker containers.
 
 ## Design
 
