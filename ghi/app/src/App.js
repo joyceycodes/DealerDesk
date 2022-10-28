@@ -106,7 +106,7 @@ async function getAutomobileVOs () {
               <Route path="new" element={<TechnicianForm />} />
           </Route>
           <Route path="serviceappointments">
-              <Route path="" element={<ServiceAppointmentsList appointments={appointments} automobileVOs = {automobileVOs} />}/>
+              <Route path="" element={<ServiceAppointmentsList getAppointments={getAppointments} appointments={appointments} automobileVOs = {automobileVOs} />}/>
               <Route path="schedule" element={<ServiceAppointmentForm getAppointments={getAppointments}/>}/>
           </Route>
           <Route path="salespersons">
