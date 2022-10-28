@@ -98,16 +98,83 @@ All accessible from the Navigation bar located at the top of the window, under t
 The Service microservice manages Services Appointments, and Technicians. It also connects with the Inventory microservice through a poller to
 
 ## Sales microservice
+### Backend
+The Sales microservices are used to handle sales information, including sales persons, customers, sales records and automobiles that are within our inventory. 
+We can split the sales microservices into two separate applications - sales API and sales poller. 
 
-Sales microservice is used to handle sales information, including sales persons, customers, sales records and automobiles that are within our inventory. 
-We can split the sales microservice into two parts - sales API and sales poller. 
+Sales API is Django application that houses our models, URLs, and views. It can be accessed on Insomnia on port 8090.
 
+Sales poller is a polling application used to send periodic requests to Inventory API for automobile data. It is set to poll every 10 seconds but the interval may be adjusted in the poll() function in poller.py. 
+#### Models
 Sales API is a RESTful API with the following models and attributes:
--SalesPerson - name, employee_number(unique value)
--Customer - name, address, phone_number
--SaleRecord - automobile (OneToOne relationship to AutomobileVO model), sales_person(ForeignKey to SalesPerson model), customer(ForeignKey to Customer model), sales_price
--AutomobileVO - vin(unique value), import_href(unique value), is_sold(boolean)
+- SalesPerson 
+    - name
+    - employee_number(unique value)
+- Customer 
+    - name
+    - address
+    - phone_number
+- SaleRecord
+    - automobile (OneToOne relationship to AutomobileVO model)
+    - sales_person(ForeignKey to SalesPerson model)
+    - customer(ForeignKey to Customer model)
+    - sales_price
+- AutomobileVO 
+    - vin(unique value)
+    - import_href(unique value)
+    - is_sold(boolean, default=False)
 
-Sales poller is a poller used to send periodic requests to Inventory API for automobile data. It is set to poll every 10 seconds but the interval may be adjusted in the poll() function in poller.py.
+#### Views and URLs
+
+Sales API includes the following RESTful APIs:
+
+Sales Person:
+
+| Action | Method | URL |
+|--------|--------| -----|
+| List sales persons | GET | (http://localhost:8090/api/salespersons/)
+| Create a sales person | POST | (http://localhost:8090/api/salespersons/)
+
+Example JSON body to create a new sale record:
+`
+    {
+    "name": "Salesy McSalesman",
+    "employee_number": 1908
+    }
+`
+
+Customer:
+
+| Action | Method | URL |
+|--------|--------| -----|
+| List customers | GET | (http://localhost:8090/api/customers/)
+| Create a customer | POST | (http://localhost:8090/api/customers/)
+
+Example JSON body to create a new customer:
+`
+    {
+	"name": "Custom Customer",
+	"address": "123 Main St",
+	"phone_number": "000-111-2222"
+    }
+`
+
+Sales Record:
+
+| Action | Method | URL |
+|--------|--------| -----|
+| List sales records | GET | (http://localhost:8090/api/salesrecords/)
+| Create a sales record | POST | (http://localhost:8090/api/salesrecords/)
+
+Example JSON body to create a new sale record:
+`
+    {
+    "automobile":"1C3CC5FB2AN110016",
+    "customer": 1,
+    "sales_person": "Salesy McSalesman",
+    "sales_price": 70000
+    }
+`
+
 
 
