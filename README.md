@@ -194,13 +194,34 @@ Polls the Inventory microservice every 15 seconds for any automobile instances a
 
 All accessible from the Navigation bar located at the top of the window, under the "Service" dropdown
 
-- "View Service Appointments": displays a table of all scheduled service appointments, including the VIN of the car, the customer name, the date and time of the appointment, and the Technician assigned to the appointment. A gold star will be displayed in the first column of any row that contains a VIP customer. To the right of each appointment, there is a "cancel" and "finished" button. If the cancel button is pressed, a DELETE request will be sent to the URL for that appointment instance, and the instance will be deleted from the database, and disappear from the page. If the "finished" button is pressed, a PUT request will be sent to the URL for that appointment instance, and the "is_done" boolean property will be updated to "True". This will remove the appointment from the Scheduled Appointments table, into the table below, labeled "Completed Service Appointments".
-
-There is also a responsive search bar at the top of the page, which will filter the appointments by VIN number. The search bar automatically converts any input to uppercase, and will only allow 17 characters.
+- "View Service Appointments": displays a table of all scheduled service appointments, including the VIN of the car, the customer name, the date and time of the appointment, and the Technician assigned to the appointment. A gold star will be displayed in the first column of any row that contains a VIP customer. To the right of each appointment, there is a "cancel" and "finished" button. If the cancel button is pressed, a DELETE request will be sent to the URL for that appointment instance, and the instance will be deleted from the database, and disappear from the page. If the "finished" button is pressed, a PUT request will be sent to the URL for that appointment instance, and the "is_done" boolean property will be updated to "True". This will remove the appointment from the Scheduled Appointments table, into the table below, labeled "Completed Service Appointments". There is also a responsive search bar at the top of the page, which will filter the appointments by VIN number. The search bar automatically converts any input to uppercase, and will only allow 17 characters.
 
 - "Schedule a Service Appointment": displays a form that allows users to create a new appointment instance by entering in the VIN, the owner, selecting the appointment date from a calendar, selecting the appointment time (HH:MM AM/PM) from a pop up, selecting the technician from a dropdown, and entering the reason for the appointment. Once the create button is pressed, the form will clear, and a success message will be displayed. The appointment will now appear on the "View Service Appointments" page.
 
 - "Register a Technician" - displays a form to allow users to register a new technician in the database by entering a name, and an employee ID number.
+
+### Sample Insomnia JSON requests for populating the database
+
+Technicians:
+
+```
+{
+	"name": "Ray Rehberg",
+	"employee_number": 1
+}
+```
+
+Service Appointment:
+```
+{
+	"vin": "1A8HW58268F133559",
+	"owner": "Lindsey Carlson",
+	"date": "2023-07-15",
+	"time": "17:00:00",
+	"reason": "Brakes don't work",
+	"technician": "Ray Rehberg"
+}
+```
 
 
 ## Sales microservice
