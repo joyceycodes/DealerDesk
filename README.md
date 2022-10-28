@@ -44,6 +44,7 @@ This microservice includes RESTful APIs for all three models, which can be acces
 
 
 
+<img src='images/Project Beta Overview.png' alt='diagram of Inventory, Sales, and Service microservices'>
 
 ## Service microservice
 

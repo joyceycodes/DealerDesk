@@ -16,7 +16,7 @@ class AutomobileVO(models.Model):
         return reverse("api_automobile_VO", kwargs={"pk": self.id})
 class SalesPerson(models.Model):
     name = models.CharField(max_length=100)
-    employee_number = models.CharField(max_length=100, unique=True)
+    employee_number = models.PositiveSmallIntegerField(unique=True)
 
     def __str__(self):
         return self.name
@@ -48,7 +48,7 @@ class SaleRecord(models.Model):
         Customer, 
         related_name="sale_record", 
         on_delete=models.PROTECT,)
-    sales_price = models.PositiveIntegerField(null=False, blank=False)
+    sales_price = models.DecimalField(max_digits=15, decimal_places=2)
 
     def __str__(self):
         return f"{self.automobile}"

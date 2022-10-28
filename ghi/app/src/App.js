@@ -84,8 +84,6 @@ async function getAutomobileVOs () {
   }
 }
 
-
-
   useEffect(() => {
     getSalesRecords();
     getSalesPersons();

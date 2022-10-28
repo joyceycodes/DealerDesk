@@ -73,7 +73,7 @@ class SaleRecordForm extends React.Component {
         delete data.salesPrice;
         delete data.automobiles;
         delete data.customers;
-        console.log(this.state)
+   
                 
         const url = 'http://localhost:8090/api/salesrecords/';
         const fetchConfig = {
@@ -88,7 +88,7 @@ class SaleRecordForm extends React.Component {
 
         if (salesRecordResponse.ok) { 
             await salesRecordResponse.json();
-            console.log("car is sold!!!", salesRecordResponse)
+
 
             const cleared = {
                 automobile: "",
@@ -101,7 +101,7 @@ class SaleRecordForm extends React.Component {
             };
 
             this.setState(cleared);
-            console.log(this.state)
+
             this.props.getSalesRecords();
         }
     }
