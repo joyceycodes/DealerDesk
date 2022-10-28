@@ -7,7 +7,7 @@ Team:
 
 ## Design
 
-<img src='Project Beta Overview.png' alt='diagram of Inventory, Sales, and Service microservices'>
+<img src='images/Project Beta Overview.png' alt='diagram of Inventory, Sales, and Service microservices'>
 
 ## Service microservice
 
