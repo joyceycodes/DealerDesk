@@ -200,8 +200,14 @@ Example JSON body to create a new sale record:
 
 ### Frontend React Application
 To view the Sales Microservice frontend application, navigate to localhost:3000 in your browser. Within the Sales dropdown in the navigation bar is the following:
-- All sales history - Shows a list view of all sales records
-- Individual sales history - Shows a list view of all sales records that may be filtered by sales person upon selecting a sales person in the dropdown menu. 
-- Log a sale - A form to create a new sale record. Only automobiles that have not been sold will be displayed in the dropdown when selecting an automobile. Fill in the form with the automobile, sales person, customer, and sales price. Form clears upon successful sale record submission.
-- Register a sales person - A form to add a new sales person to the team. Takes in name and employee number for the new sales person. Form clears upon successful creation of a sales person.
-- Add a customer - A form to add a potential customer. Takes in name, address, and phone number of the new customer. Form clears upon successful creation of a sales person.
+- **All sales history** - Shows a list view of all sales records
+- **Individual sales history** - Shows a list view of all sales records that may be filtered by sales person upon selecting a sales person in the dropdown menu. 
+- **Log a sale** - A form to create a new sale record. Only automobiles that have not been sold will be displayed in the dropdown when selecting an automobile. Fill in the form with the automobile, sales person, customer, and sales price. Form clears upon successful sale record submission.
+- **Register a sales person** - A form to add a new sales person to the team. Takes in name and employee number (must be a unique value) of the new sales person. Form clears upon successful creation of a sales person.
+- **Add a customer** - A form to add a potential customer. Takes in name, address, and phone number of the new customer. Form clears upon successful creation of a sales person.
+
+
+## Stretch goals for the future
+### Sales microservice
+- Verify phone number inputs on frontend and backend.
+- Success message upon submission of the forms.
