@@ -3,6 +3,7 @@
 function SalesRecordList(props) {
     return (
         <div>
+            <h1>All sales history</h1>
             <table className="table table-striped">
             <thead>
                 <tr>

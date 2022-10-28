@@ -9,7 +9,7 @@ Team:
 Getting started:
 1. In your terminal, git clone this repository to your local computer using this link (https://gitlab.com/joyceyu96/project-beta.git)
 2. Run [docker volume create beta-data] in your terminal. This will create your database.
-3. Run [docker compose up --build] to build the docker image and docker containers.
+3. Run [docker compose up --build] to build the docker image and run the docker containers.
 
 ## Design
 
@@ -57,5 +57,15 @@ microservice, here.
 
 ## Sales microservice
 
-Explain your models and integration with the inventory
-microservice, here.
+Sales microservice is used to handle sales information, including sales persons, customers, sales records and automobiles that are within our inventory. 
+We can split the sales microservice into two parts - sales API and sales poller. 
+
+Sales API is a RESTful API with the following models and attributes:
+-SalesPerson - name, employee_number(unique value)
+-Customer - name, address, phone_number
+-SaleRecord - automobile (OneToOne relationship to AutomobileVO model), sales_person(ForeignKey to SalesPerson model), customer(ForeignKey to Customer model), sales_price
+-AutomobileVO - vin(unique value), import_href(unique value), is_sold(boolean)
+
+Sales poller is a poller used to send periodic requests to Inventory API for automobile data. It is set to poll every 10 seconds but the interval may be adjusted in the poll() function in poller.py.
+
+
