@@ -6,10 +6,32 @@ Team:
 * Joyce - Sales
 
 ## Set up
-Getting started:
+
+### Getting started:
 1. In your terminal, git clone this repository to your local computer using this link (https://gitlab.com/joyceyu96/project-beta.git)
 2. Run [docker volume create beta-data] in your terminal. This will create your database.
 3. Run [docker compose up --build] to build the docker image and run the docker containers.
+
+### Creating a superuser:
+To create a superuser and log into the Admin application for any of the microservices:
+1. In Docker, navigate to the respective docker container, and click the three dots to show container actions.
+2. Select 'Open in terminal'
+3. Run `python manage.py createsuperuser' in the container terminal.
+4. Complete the form to set username and password for the superuser. 
+5. Navigate to the corresponding URL for the microservice that you just created a superuser for:
+    - Inventory: http://localhost:8100/admin/
+    - Service: http://localhost:8080/admin/
+    - Sales: http://localhost:8090/admin/
+
+### Deleting your database:
+In the instance that you want to redo your database, **stop all containers** and run the following commands in your terminal:
+```
+docker container prune -f
+docker volume rm beta-data
+docker volume create beta-data
+docker-compose up
+```
+
 
 ## Design
 
@@ -98,13 +120,13 @@ All accessible from the Navigation bar located at the top of the window, under t
 The Service microservice manages Services Appointments, and Technicians. It also connects with the Inventory microservice through a poller to
 
 ## Sales microservice
-### Backend
 The Sales microservices are used to handle sales information, including sales persons, customers, sales records and automobiles that are within our inventory. 
 We can split the sales microservices into two separate applications - sales API and sales poller. 
 
 Sales API is Django application that houses our models, URLs, and views. It can be accessed on Insomnia on port 8090.
 
-Sales poller is a polling application used to send periodic requests to Inventory API for automobile data. It is set to poll every 10 seconds but the interval may be adjusted in the poll() function in poller.py. 
+Sales poller is a polling application used to send periodic requests to Inventory API for automobile data. A new automobileVO instance wIt is set to poll every 10 seconds but the time interval may be adjusted in the poll() function in poller.py. 
+### Backend
 #### Models
 Sales API is a RESTful API with the following models and attributes:
 - SalesPerson 
@@ -136,12 +158,12 @@ Sales Person:
 | Create a sales person | POST | (http://localhost:8090/api/salespersons/)
 
 Example JSON body to create a new sale record:
-`
+```json
     {
     "name": "Salesy McSalesman",
     "employee_number": 1908
     }
-`
+```
 
 Customer:
 
@@ -151,13 +173,13 @@ Customer:
 | Create a customer | POST | (http://localhost:8090/api/customers/)
 
 Example JSON body to create a new customer:
-`
+```json
     {
 	"name": "Custom Customer",
 	"address": "123 Main St",
 	"phone_number": "000-111-2222"
     }
-`
+```
 
 Sales Record:
 
@@ -167,14 +189,15 @@ Sales Record:
 | Create a sales record | POST | (http://localhost:8090/api/salesrecords/)
 
 Example JSON body to create a new sale record:
-`
+```json
     {
     "automobile":"1C3CC5FB2AN110016",
     "customer": 1,
     "sales_person": "Salesy McSalesman",
     "sales_price": 70000
     }
-`
+```
 
 
-
+### Frontend
+#### React
