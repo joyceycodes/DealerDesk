@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import MainPage from './MainPage';
 import Nav from './Nav';
 import TechnicianForm from './service/TechnicianForm';
@@ -11,16 +12,22 @@ import SaleRecordForm from './sales/SaleRecordForm';
 import ServiceAppointmentsList from './service/ServiceAppointmentList';
 import ManufacturersList from './inventory/ManufacturersList';
 import ManufacturerForm from './inventory/ManufacturerForm';
+import VehicleModelForm from './inventory/VehicleModelForm';
+import AutomobilesList from './inventory/AutomobilesList';
+import AutomobileForm from './inventory/AutomobileForm';
 import VehicleModelsList from './inventory/VehicleModelsList';
-import { useState, useEffect } from 'react';
+
 
 function App(props) {
 
   const [ salesRecords, setSalesRecords ] = useState([]);
   const [ salesPersons, setSalesPersons ] = useState([]);
-  const [ vehicleModels, setVehicleModels ] = useState([]);
   const [ manufacturers, setManufacturers ] = useState([]);
-
+  const [ automobiles, setAutomobiles ] = useState([]);
+  const [ appointments, setAppointments ] = useState([]);
+  const [ automobileVOs, setAutomobileVOs ] = useState([]);
+  const [ vehicleModels, setVehicleModels ] = useState([]);
+  
   async function getSalesRecords(){
     const salesRecordsResponse = await fetch('http://localhost:8090/api/salesrecords/');
     if(salesRecordsResponse.ok){
@@ -51,21 +58,48 @@ function App(props) {
     }
   }
 
+
+async function getAppointments() {
+  const appointmentResponse = await fetch('http://localhost:8080/api/serviceappointments/');
+  if (appointmentResponse.ok) {
+    const { service_appointments } = await appointmentResponse.json()
+    setAppointments(service_appointments)
+  }
+}
+
+  async function getAutomobiles() {
+    const automobilesResponse = await fetch("http://localhost:8100/api/automobiles/");
+    if (automobilesResponse.ok) {
+      const { autos } = await automobilesResponse.json()
+      setAutomobiles(autos)
+  }}
+
+
+async function getAutomobileVOs () {
+  const automobileVOsResponse = await fetch ('http://localhost:8080/api/automobileVOs/');
+  if (automobileVOsResponse.ok) {
+    const { automobileVOs } = await automobileVOsResponse.json()
+    setAutomobileVOs(automobileVOs)
+  }
+}
+
+async function getVehicleModels() {
+  const vehicleModelsResponse = await fetch ('http://localhost:8100/api/models/');
+  if (vehicleModelsResponse.ok) {
+    const { models } = await vehicleModelsResponse.json()
+    setVehicleModels(models)
+  }
+}
+
   useEffect(() => {
     getSalesRecords();
     getSalesPersons();
     getVehicleModels();
     getManufacturers();
+    getAutomobiles();
+    getAppointments();
+    getAutomobileVOs();
   }, []);
-
-
-  if (props.appointments === undefined) {
-    return null;
-  }
-
-  if (props.automobileVOs === undefined) {
-    return null;
-  }
 
   return (
     <BrowserRouter>
@@ -78,8 +112,8 @@ function App(props) {
               <Route path="new" element={<TechnicianForm />} />
           </Route>
           <Route path="serviceappointments">
-              <Route path="" element={<ServiceAppointmentsList appointments={props.appointments} automobileVOs = {props.automobileVOs} />}/>
-              <Route path="schedule" element={<ServiceAppointmentForm />} />
+              <Route path="" element={<ServiceAppointmentsList appointments={appointments} automobileVOs = {automobileVOs} />}/>
+              <Route path="schedule" element={<ServiceAppointmentForm getAppointments={getAppointments}/>}/>
           </Route>
           <Route path="salespersons">
             <Route path="" element={<SalesPersonHistoryList salesRecords={salesRecords} salesPersons={salesPersons}/>}  />
@@ -97,9 +131,13 @@ function App(props) {
             <Route path="" element={<ManufacturersList manufacturers={manufacturers}/>} />
             <Route path="new" element={<ManufacturerForm getManufacturers={getManufacturers}/>}  />
           </Route>
-          <Route path="vehiclemodels">
-            <Route path="" element={<VehicleModelsList vehicleModels={vehicleModels}/>} />
-            <Route path="new" />
+          <Route path="vehiclemodels/">
+            <Route path="" element={<VehicleModelsList vehicleModels = {vehicleModels}/>} />
+            <Route path="new" element={<VehicleModelForm getVehicleModels={getVehicleModels}/>}/>
+          </Route>
+          <Route path="automobiles/">
+            <Route path="" element={<AutomobilesList automobiles={automobiles}/>} />
+            <Route path="new" element={<AutomobileForm getAutomobiles={getAutomobiles}/>}/>
           </Route>
         </Routes>
       </div>

@@ -25,7 +25,6 @@ class ServiceAppointmentForm extends React.Component {
         event.preventDefault();
         const data = { ...this.state };
         delete data.technicians;
-        // console.log(data);
 
         const appointmentUrl = 'http://localhost:8080/api/serviceappointments/';
         const fetchConfig = {
@@ -37,10 +36,8 @@ class ServiceAppointmentForm extends React.Component {
           };
 
         const response = await fetch(appointmentUrl, fetchConfig);
-        // console.log(response);
         if (response.ok) {
             const newAppointment = await response.json();
-            console.log(newAppointment);
 
             const cleared = {
                 vin: "",
@@ -49,14 +46,12 @@ class ServiceAppointmentForm extends React.Component {
                 time: "",
                 technician: "",
                 reason: "",
+                isSubmitted: true,
             };
-            this.setState(cleared);
-            window.location.reload(true);
 
-        } else {
-        console.log("Not posting correctly")
-        }
-    }
+            this.setState(cleared);
+            this.props.getAppointments();
+    }}
 
 
     handleVINChange(event) {
@@ -96,12 +91,17 @@ class ServiceAppointmentForm extends React.Component {
 
         if (response.ok) {
             const data = await response.json();
-            console.log(data)
             this.setState({ technicians: data.technicians });
         }
     }
 
     render() {
+        let successMessageClass = "alert alert-success mb-0 d-none";
+        if (this.state.isSubmitted) {
+            successMessageClass = "alert alert-success mb-0";
+        }
+
+
         return (
             <div className="row">
                 <div className="offset-3 col-6">
@@ -140,7 +140,10 @@ class ServiceAppointmentForm extends React.Component {
                                 <label htmlFor="reason" className="form-label">Reason for Appointment</label>
                                 <textarea onChange={this.handleReasonChange} value={this.state.reason} className="form-control" id="reason" rows="3"></textarea>
                             </div>
-                            <button className="btn btn-primary">Create</button>
+                            <button className="btn btn-primary mb-3">Create</button>
+                            <div>
+                                <p className={successMessageClass}>The Service Appointment has been scheduled</p>
+                            </div>
                         </form>
                     </div>
                 </div>
