@@ -90,6 +90,9 @@ def api_show_service_appointment(request, pk):
 
     else:
         ServiceAppointment.objects.filter(id=pk).update(is_done=True)
+        return JsonResponse (
+            {"message": "This service appointment has been completed"}
+        )
 
 
 
