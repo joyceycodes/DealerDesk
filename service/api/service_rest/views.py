@@ -18,9 +18,6 @@ class TechnicianEncoder(ModelEncoder):
     model = Technician
     properties = ["name", "employee_number", "id"]
 
-    # def get_extra_data(self, o):
-    #     return {"technician": o.name}
-
 
 class ServiceAppointmentEncoder(ModelEncoder):
     model = ServiceAppointment
@@ -40,10 +37,6 @@ class ServiceAppointmentEncoder(ModelEncoder):
         "technician": TechnicianEncoder()
     }
 
-
-    # def get_extra_data(self, o):
-    #     count = AutomobileVO.objects.filter(vin=o.vin).count()
-    #     return {"is VIP": count > 0}
 
 
 @ require_http_methods(["GET", "POST"])
@@ -79,6 +72,8 @@ def api_list_service_appointments(request):
             safe=False,
         )
 
+
+
 @require_http_methods(["GET", "DELETE", "PUT"])
 def api_show_service_appointment(request, pk):
 
@@ -97,17 +92,6 @@ def api_show_service_appointment(request, pk):
         ServiceAppointment.objects.filter(id=pk).update(is_done=True)
 
 
-
-
-# @require_http_methods(["GET"])
-# def api_show_service_appointments(request):
-
-#     if request.method == "GET":
-#         appointments = ServiceAppointment.objects.all()
-#         return JsonResponse(
-#             {"service appointments" : appointments},
-#             encoder=ServiceAppointmentEncoder,
-#         )
 
 
 

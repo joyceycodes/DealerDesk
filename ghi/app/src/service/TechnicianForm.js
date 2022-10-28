@@ -19,7 +19,6 @@ class TechnicianForm extends React.Component {
     const data = { ...this.state };
     data.employee_number = data.employeeNumber;
     delete data.employeeNumber;
-    console.log(data);
 
     const technicianUrl = "http://localhost:8080/api/technicians/";
     const fetchConfig = {
@@ -33,7 +32,6 @@ class TechnicianForm extends React.Component {
     const response = await fetch(technicianUrl, fetchConfig);
     if (response.ok) {
       const newTechnician = await response.json();
-      console.log(newTechnician);
 
       const cleared = {
         name: "",
@@ -75,7 +73,7 @@ class TechnicianForm extends React.Component {
                 <input onChange={this.handleNumberChange} value={this.state.employeeNumber} placeholder="Employee Number" required type="number" name="model_name" id="employee_number" className="form-control" />
                 <label htmlFor="employee_number">Employee ID Number</label>
               </div>
-              <button className="btn btn-primary">Create</button>
+              <button className="btn btn-primary mb-3">Create</button>
               <div>
                 <p className={successMessageClass}>This Technician has been registered</p>
               </div>
