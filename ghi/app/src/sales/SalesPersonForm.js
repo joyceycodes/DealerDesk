@@ -24,7 +24,6 @@ class SalesPersonForm extends React.Component {
     async handleSubmit(event){
         event.preventDefault();
         const data = {...this.state};
-        console.log(data);
         data.employee_number = data.employeeNumber;
         delete data.employeeNumber;
 
