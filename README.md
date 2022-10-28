@@ -45,13 +45,35 @@ The Inventory microservice keeps track of Manufacturer, Vehicle Models and Autom
 This microservice includes RESTful APIs for all three models, which can be accessed from Insomnia, or your browser:
 
 Manufacturer:
-<img src="images/Manufacturers API.png" alt="table of URL endpoints with corresponding view functions for Manufacturer Model">
+
+| Action | Method | URL |
+|--------|--------| -----|
+| List manufacturers | GET | (http://localhost:8100/api/manufacturers/)
+| Create a manufacturer | POST | (http://localhost:8100/api/manufacturers/)
+| Get a specific manufacturer | GET | (http://localhost:8100/api/manufacturers/:id/)
+| Update a specific manufacturer | PUT | (http://localhost:8100/api/manufacturers/:id/)
+| Delete a specific manufacturer | DELETE | (http://localhost:8100/api/manufacturers/:id/)
+
 
 Vehicle Model:
-<img src="images/Vehicle Models API.png" alt="table of URL endpoints with corresponding view functions for Vehicle Models Model">
+
+| Action | Method | URL |
+|--------|--------| -----|
+| List automobiles | GET | (http://localhost:8100/api/models/)
+| Create an automobile | POST | (http://localhost:8100/api/models/)
+| Get a specific automobile | GET | (http://localhost:8100/api/models/:id/)
+| Update a specific automobile | PUT | (http://localhost:8100/api/models/:id/)
+| Delete a specific automobile | DELETE | (http://localhost:8100/api/models/:id/)
 
 Automobiles:
-<img src="images/Automobiles API.png" alt="table of URL endpoints with corresponding view functions for Automobile Models">
+
+| Action | Method | URL |
+|--------|--------| -----|
+| List vehicle models | GET | (http://localhost:8100/api/automobiles/)
+| Create a vehicle model | POST | (http://localhost:8100/api/automobiles/)
+| Get a specific vehicle model | GET | (http://localhost:8100/api/automobiles/:vin/)
+| Update a specific vehicle model | PUT | (http://localhost:8100/api/automobiles/:vin/)
+| Delete a specific vehicle model | DELETE | (http://localhost:8100/api/automobiles/:vin/)
 
 
 ### React components
