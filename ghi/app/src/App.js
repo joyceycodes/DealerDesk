@@ -18,7 +18,7 @@ import AutomobileForm from './inventory/AutomobileForm';
 import VehicleModelsList from './inventory/VehicleModelsList';
 
 
-function App(props) {
+function App() {
 
   const [ salesRecords, setSalesRecords ] = useState([]);
   const [ salesPersons, setSalesPersons ] = useState([]);
@@ -80,14 +80,6 @@ async function getAutomobileVOs () {
   if (automobileVOsResponse.ok) {
     const { automobileVOs } = await automobileVOsResponse.json()
     setAutomobileVOs(automobileVOs)
-  }
-}
-
-async function getVehicleModels() {
-  const vehicleModelsResponse = await fetch ('http://localhost:8100/api/models/');
-  if (vehicleModelsResponse.ok) {
-    const { models } = await vehicleModelsResponse.json()
-    setVehicleModels(models)
   }
 }
 

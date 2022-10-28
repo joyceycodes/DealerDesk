@@ -3,11 +3,18 @@ from django.urls import NoReverseMatch
 from django.db.models import QuerySet
 from datetime import datetime
 from phonenumber_field.modelfields import PhoneNumber
-
+from decimal import *
 class PhoneNumberEncoder(JSONEncoder):
     def default(self,o):
         if isinstance(o, PhoneNumber):
             return str(o)
+        else:
+            return super().default(o)
+            
+class DecimalEncoder(JSONEncoder):
+    def default(self,o):
+        if isinstance(o, Decimal):
+            return int(o)
         else:
             return super().default(o)
 
@@ -27,7 +34,7 @@ class QuerySetEncoder(JSONEncoder):
             return super().default(o)
 
 
-class ModelEncoder(DateEncoder, QuerySetEncoder, PhoneNumberEncoder, JSONEncoder):
+class ModelEncoder(DateEncoder, QuerySetEncoder, PhoneNumberEncoder, DecimalEncoder, JSONEncoder):
     encoders = {}
 
     def default(self, o):
