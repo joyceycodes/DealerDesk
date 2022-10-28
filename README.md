@@ -48,10 +48,10 @@ Manufacturer:
 <img src="images/Manufacturers API.png" alt="table of URL endpoints with corresponding view functions for Manufacturer Model">
 
 Vehicle Model:
-<img scr="images/Vehicle Models API.png" alt="table of URL endpoints with corresponding view functions for Vehicle Models Model"
+<img src="images/Vehicle Models API.png" alt="table of URL endpoints with corresponding view functions for Vehicle Models Model"
 
 Automobiles:
-<img scr="images/Automobiles API.png" alt="table of URL endpoints with corresponding view functions for Automobile Models"
+<img src="images/Automobiles API.png" alt="table of URL endpoints with corresponding view functions for Automobile Models"
 
 
 ### React components
