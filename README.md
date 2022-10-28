@@ -250,13 +250,15 @@ Service Appointment:
 ```
 
 
-## Sales microservice
+<details open>
+    <summary>Sales microservice</summary>
+    
 The Sales microservices are used to handle sales information, including sales persons, customers, sales records and automobiles that are within our inventory. 
 We can split the sales microservices into two separate applications - sales API and sales poller. 
 
 Sales API is Django application that houses our models, URLs, and views. It can be accessed on Insomnia on port 8090.
 
-Sales poller is a polling application used to send periodic requests to Inventory API for automobile data. A new automobileVO instance is created in the Sales Microservice database for each instance of Automobile in the Inventory database. It is set to poll every 10 seconds but the time interval may be adjusted in the poll() function in poller.py. 
+Sales poller is a polling application used to send periodic requests to Inventory API for automobile data. A new automobileVO instance is created in the Sales Microservice database for each instance of Automobile in the Inventory database if there is not already a corresponding AutomobileVO object. It is set to poll every 10 seconds but the time interval may be adjusted in the poll() function in poller.py. 
 ### Backend
 #### Models
 Sales API is a RESTful API with the following models and attributes:
@@ -336,7 +338,7 @@ To view the Sales Microservice frontend application, navigate to localhost:3000 
 - **Log a sale** - A form to create a new sale record. Only automobiles that have not been sold will be displayed in the dropdown when selecting an automobile. Fill in the form with the automobile, sales person, customer, and sales price. Form clears upon successful sale record submission.
 - **Register a sales person** - A form to add a new sales person to the team. Takes in name and employee number (must be a unique value) of the new sales person. Form clears upon successful creation of a sales person.
 - **Add a customer** - A form to add a potential customer. Takes in name, address, and phone number of the new customer. Form clears upon successful creation of a sales person.
-
+</details>
 
 ## Stretch goals for the future
 ### Sales microservice
