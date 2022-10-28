@@ -64,7 +64,6 @@ class SaleRecordForm extends React.Component {
     
 
     async handleSubmit(event) {
-        console.log(this.state)
         event.preventDefault();
         const data = {...this.state};
         data.sales_person = data.salesPerson;
@@ -74,6 +73,7 @@ class SaleRecordForm extends React.Component {
         delete data.salesPrice;
         delete data.automobiles;
         delete data.customers;
+        console.log(this.state)
                 
         const url = 'http://localhost:8090/api/salesrecords/';
         const fetchConfig = {
@@ -87,14 +87,21 @@ class SaleRecordForm extends React.Component {
         
 
         if (salesRecordResponse.ok) { 
+            await salesRecordResponse.json();
+            console.log("car is sold!!!", salesRecordResponse)
+
             const cleared = {
                 automobile: "",
                 customer: "",
                 salesPerson: "",
                 salesPrice: "",
+                automobiles:[],
+                customers:[],
+                salesPersons:[]
             };
+
             this.setState(cleared);
-          
+            console.log(this.state)
             this.props.getSalesRecords();
         }
     }
@@ -148,7 +155,7 @@ class SaleRecordForm extends React.Component {
                         </div>
                         
                         <div className="form-floating mb-3">
-                            <input onChange={this.handleSalesPriceChange} placeholder="Sales Price" required type="number" min="1" name="salesPrice" id="salesPrice" className="form-control"/>
+                            <input onChange={this.handleSalesPriceChange} value={this.state.salesPrice} placeholder="Sales Price" required type="number" min="1" name="salesPrice" id="salesPrice" className="form-control"/>
                             <label htmlFor="salesPrice">Sales Price</label>
                         </div>
 
