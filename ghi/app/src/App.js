@@ -27,7 +27,7 @@ function App() {
   const [ appointments, setAppointments ] = useState([]);
   const [ automobileVOs, setAutomobileVOs ] = useState([]);
   const [ vehicleModels, setVehicleModels ] = useState([]);
-  
+
   async function getSalesRecords(){
     const salesRecordsResponse = await fetch('http://localhost:8090/api/salesrecords/');
     if(salesRecordsResponse.ok){
@@ -72,7 +72,8 @@ async function getAppointments() {
     if (automobilesResponse.ok) {
       const { autos } = await automobilesResponse.json()
       setAutomobiles(autos)
-  }}
+  }
+}
 
 
 async function getAutomobileVOs () {
@@ -92,6 +93,7 @@ async function getAutomobileVOs () {
     getAppointments();
     getAutomobileVOs();
   }, []);
+
 
   return (
     <BrowserRouter>
