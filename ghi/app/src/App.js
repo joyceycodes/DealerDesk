@@ -18,7 +18,7 @@ import AutomobileForm from './inventory/AutomobileForm';
 import VehicleModelsList from './inventory/VehicleModelsList';
 
 
-function App(props) {
+function App() {
 
   const [ salesRecords, setSalesRecords ] = useState([]);
   const [ salesPersons, setSalesPersons ] = useState([]);
@@ -72,7 +72,8 @@ async function getAppointments() {
     if (automobilesResponse.ok) {
       const { autos } = await automobilesResponse.json()
       setAutomobiles(autos)
-  }}
+  }
+}
 
 
 async function getAutomobileVOs () {
@@ -83,7 +84,7 @@ async function getAutomobileVOs () {
   }
 }
 
-}
+
 
   useEffect(() => {
     getSalesRecords();
@@ -94,6 +95,7 @@ async function getAutomobileVOs () {
     getAppointments();
     getAutomobileVOs();
   }, []);
+
 
   return (
     <BrowserRouter>
