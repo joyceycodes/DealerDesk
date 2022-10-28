@@ -50,6 +50,7 @@ class ServiceAppointmentForm extends React.Component {
             };
 
             this.setState(cleared);
+            this.props.getAppointments();
     }}
 
 

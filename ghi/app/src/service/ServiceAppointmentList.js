@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 
 
 function ServiceAppointmentsList(props) {
-
     let automobileVOList = [];
     for (let auto of props.automobileVOs) {
         automobileVOList.push(auto["vin"])

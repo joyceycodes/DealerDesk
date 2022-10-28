@@ -66,7 +66,10 @@ class AutomobileForm extends React.Component {
             };
 
             this.setState(cleared);
+
+            this.props.getAutomobiles();
         }
+
     }
 
     async componentDidMount() {

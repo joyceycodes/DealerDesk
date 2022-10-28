@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import MainPage from './MainPage';
 import Nav from './Nav';
 import TechnicianForm from './service/TechnicianForm';
@@ -18,14 +19,56 @@ import AutomobileForm from './inventory/AutomobileForm';
 
 function App(props) {
 
-  if (props.appointments === undefined ||
-      props.salesRecords === undefined ||
-      props.automobileVOs === undefined ||
+  const [ automobiles, setAutomobiles ] = useState([]);
+  const [ appointments, setAppointments ] = useState([]);
+  const [ automobileVOs, setAutomobileVOs ] = useState([]);
+  const [ vehicleModels, setVehicleModels ] = useState([]);
+
+
+async function getAppointments() {
+  const appointmentResponse = await fetch('http://localhost:8080/api/serviceappointments/');
+  if (appointmentResponse.ok) {
+    const { service_appointments } = await appointmentResponse.json()
+    setAppointments(service_appointments)
+  }
+}
+
+  async function getAutomobiles() {
+    const automobilesResponse = await fetch("http://localhost:8100/api/automobiles/");
+    if (automobilesResponse.ok) {
+      const { autos } = await automobilesResponse.json()
+      setAutomobiles(autos)
+  }}
+
+
+async function getAutomobileVOs () {
+  const automobileVOsResponse = await fetch ('http://localhost:8080/api/automobileVOs/');
+  if (automobileVOsResponse.ok) {
+    const { automobileVOs } = await automobileVOsResponse.json()
+    setAutomobileVOs(automobileVOs)
+  }
+}
+
+async function getVehicleModels() {
+  const vehicleModelsResponse = await fetch ('http://localhost:8100/api/models/');
+  if (vehicleModelsResponse.ok) {
+    const { models } = await vehicleModelsResponse.json()
+    setVehicleModels(models)
+  }
+}
+
+  useEffect(() => {
+    getAutomobiles();
+    getAppointments();
+    getAutomobileVOs();
+    getVehicleModels();
+  }, [])
+
+
+  if (props.salesRecords === undefined ||
       props.salesPersons === undefined||
       props.salesAutomobileVO === undefined ||
-      props.manufacturers === undefined ||
-      props.vehicleModels === undefined ||
-      props.automobiles === undefined ) {
+      props.manufacturers === undefined) {
 
     return null;
   }
@@ -42,8 +85,8 @@ function App(props) {
               <Route path="new" element={<TechnicianForm />} />
           </Route>
           <Route path="serviceappointments">
-              <Route path="" element={<ServiceAppointmentsList appointments={props.appointments} automobileVOs = {props.automobileVOs} />}/>
-              <Route path="schedule" element={<ServiceAppointmentForm />} />
+              <Route path="" element={<ServiceAppointmentsList appointments={appointments} automobileVOs = {automobileVOs} />}/>
+              <Route path="schedule" element={<ServiceAppointmentForm getAppointments={getAppointments}/>}/>
           </Route>
           <Route path="salespersons">
             <Route path="" element={<SalesPersonHistoryList salesRecords={props.salesRecords} salesPersons={props.salesPersons}/>}  />
@@ -62,12 +105,12 @@ function App(props) {
             <Route path="new" element={<ManufacturerForm/>}  />
           </Route>
           <Route path="vehiclemodels/">
-            {/* <Route path="" element={<VehicleModelsList vehicleModels = {props.vehicleModels}/>} /> */}
-            <Route path="new" element={<VehicleModelForm/>}/>
+            {/* <Route path="" element={<VehicleModelsList vehicleModels = {vehicleModels}/>} /> */}
+            <Route path="new" element={<VehicleModelForm getVehicleModels={getVehicleModels}/>}/>
           </Route>
           <Route path="automobiles/">
-            <Route path="" element={<AutomobilesList automobiles = {props.automobiles}/>} />
-            <Route path="new" element={<AutomobileForm/>}/>
+            <Route path="" element={<AutomobilesList automobiles={automobiles}/>} />
+            <Route path="new" element={<AutomobileForm getAutomobiles={getAutomobiles}/>}/>
           </Route>
         </Routes>
       </div>
