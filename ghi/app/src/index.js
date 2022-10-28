@@ -12,46 +12,22 @@ root.render(
 
 async function loadData() {
   const appointmentResponse = await fetch('http://localhost:8080/api/serviceappointments/');
-  const salesRecordResponse = await fetch('http://localhost:8090/api/salesrecords/');
-  const salesPersonsResponse = await fetch('http://localhost:8090/api/salespersons');
-  const salesAutomobileVOResponse = await fetch('http://localhost:8090/api/automobileVOs/');
   const automobileVOResponse = await fetch ('http://localhost:8080/api/automobileVOs/');
-  const manufacturersResponse = await fetch('http://localhost:8100/api/manufacturers/');
-  const vehicleModelsResponse = await fetch('http://localhost:8100/api/models/');
-
-  if (appointmentResponse.ok && salesRecordResponse.ok && salesPersonsResponse && salesAutomobileVOResponse && automobileVOResponse.ok && manufacturersResponse.ok && vehicleModelsResponse.ok) {
-
+  if (appointmentResponse.ok && automobileVOResponse.ok){
     const appointmentData = await appointmentResponse.json();
-    const salesRecordData = await salesRecordResponse.json();
     const automobileVOData = await automobileVOResponse.json();
-    // console.log("this is the automobileVO data:", automobileVOData)
-    const salesPersonsData = await salesPersonsResponse.json();
-    const salesAutomobileVOData = await salesAutomobileVOResponse.json();
-    const manufacturersData = await manufacturersResponse.json();
-    const vehicleModelsData = await vehicleModelsResponse.json();
     
-    // console.log("This is the data variable:", appointmentData);
-    // console.log("The appointmentData.service_appointments:", appointmentData.service_appointments)
     root.render (
       <React.StrictMode>
         <App 
           appointments={appointmentData.service_appointments} 
-          salesRecords={salesRecordData.sales_records} 
           automobileVOs = {automobileVOData.automobileVOs} 
-          salesPersons={salesPersonsData.sales_persons}
-          salesAutomobileVOs={salesAutomobileVOData.autos}
-          manufacturers={manufacturersData.manufacturers}
-          vehicleModels={vehicleModelsData.models}
         />
       </React.StrictMode>
     );
     } else {
       console.error("this is an error:", appointmentResponse);
-      console.error("sales record error:", salesRecordResponse);
       console.error("this is an automobileVO error:", automobileVOResponse);
-      console.error("sales persons error:", salesPersonsResponse);
-      console.error("manufacturers error:", manufacturersResponse);
-      console.error("vehicle models error:", vehicleModelsResponse);
     }
 }
 

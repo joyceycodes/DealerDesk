@@ -48,7 +48,7 @@ class SalesPersonForm extends React.Component {
                 employeeNumber:""
             }
             this.setState(cleared);
-
+            this.props.getSalesPersons();
 
         }
     }

@@ -88,14 +88,14 @@ class SaleRecordForm extends React.Component {
 
         if (salesRecordResponse.ok) { 
             const cleared = {
-                automobile: '',
-                customer: '',
-                salesPerson: '',
-                salesPrice: '',
+                automobile: "",
+                customer: "",
+                salesPerson: "",
+                salesPrice: "",
             };
             this.setState(cleared);
-            console.log(this.state)
-            // window.location.reload(true);
+          
+            this.props.getSalesRecords();
         }
     }
 

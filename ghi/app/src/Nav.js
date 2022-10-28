@@ -18,10 +18,6 @@ function Navigation() {
               <NavDropdown.Item as={NavLink} to="salesrecords/new">Log a Sale</NavDropdown.Item>
               <NavDropdown.Item as={NavLink} to="salespersons/new/">Register a Sales Person</NavDropdown.Item>
               <NavDropdown.Item as={NavLink} to="customers/new/">Add a Customer</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item as={NavLink} to="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Service" id="basic-nav-dropdown">
               <NavDropdown.Item as={NavLink} to="serviceappointments/">View Service Appointments</NavDropdown.Item>
