@@ -14,11 +14,10 @@ function Navigation() {
           <Nav className="me-auto">
             <Nav.Link as={NavLink} to="/">Home</Nav.Link>
             <NavDropdown title="Sales" id="basic-nav-dropdown">
-              <NavDropdown.Item as={NavLink} to="/salespersons">Sales Person</NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="salespersons/">View Sales History</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="salesrecords/new">Log a Sale</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="salespersons/new/">Register a Sales Person</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="customers/new/">Add a Customer</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item as={NavLink} to="#action/3.4">
                 Separated link
@@ -28,6 +27,11 @@ function Navigation() {
               <NavDropdown.Item as={NavLink} to="serviceappointments/">View Service Appointments</NavDropdown.Item>
               <NavDropdown.Item as={NavLink} to="serviceappointments/schedule/">Schedule a Service Appointment</NavDropdown.Item>
               <NavDropdown.Item as={NavLink} to="technicians/new/">Register a Technician</NavDropdown.Item>
+            </NavDropdown>
+            <NavDropdown title="Inventory" id="basic-nav-dropdown">
+              <NavDropdown.Item as={NavLink} to="manufacturers/">View Manufacturers</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="manufacturers/new/">Add a Manufacturer</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="vehicleModels/">View Vehicle Models</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
