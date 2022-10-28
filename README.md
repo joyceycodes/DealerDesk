@@ -91,8 +91,7 @@ All accessible from the Navigation bar located at the top of the window, under t
 
 ## Service microservice
 
-Explain your models and integration with the inventory
-microservice, here.
+The Service microservice manages Services Appointments, and Technicians. It also connects with the Inventory microservice through a poller to
 
 ## Sales microservice
 
