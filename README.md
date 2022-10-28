@@ -183,7 +183,7 @@ AutomobileVo:
 
 | Action | Method | URL |
 |--------|--------| -----|
-| List technicians | GET | http://localhost:8080/api/automobileVOs/
+| List AutomobileVOs | GET | http://localhost:8080/api/automobileVOs/
 
 
 ### The Poller
