@@ -17,7 +17,7 @@ To create a superuser and log into the Admin application for any of the microser
 1. In Docker, navigate to the respective docker container, and click the three dots to show container actions.
 2. Select 'Open in terminal'
 3. Run `python manage.py createsuperuser' in the container terminal.
-4. Complete the form to set username and password for the superuser. 
+4. Complete the form to set username and password for the superuser.
 5. Navigate to the corresponding URL for the microservice that you just created a superuser for to log in sign in:
     - Inventory: http://localhost:8100/admin/
     - Service: http://localhost:8080/admin/
@@ -118,7 +118,7 @@ All accessible from the Navigation bar located at the top of the window, under t
 
 Create a Manufacturer:
 
-```
+```json
 {
   "name": "Chrysler"
 }
@@ -127,7 +127,7 @@ Create a Manufacturer:
 
 Create a Vehicle Model:
 
-```
+```json
 {
   "name": "Sebring",
   "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
@@ -139,7 +139,7 @@ Create a Vehicle Model:
 
 Create an Automobile:
 
-```
+```json
 {
   "color": "red",
   "year": 2012,
@@ -230,7 +230,7 @@ All accessible from the Navigation bar located at the top of the window, under t
 
 Technicians:
 
-```
+```json
 {
 	"name": "Ray Rehberg",
 	"employee_number": 1
@@ -238,7 +238,7 @@ Technicians:
 ```
 
 Service Appointment:
-```
+```json
 {
 	"vin": "1A8HW58268F133559",
 	"owner": "Lindsey Carlson",
@@ -251,19 +251,19 @@ Service Appointment:
 
 ## Sales microservice
 
-The Sales microservices are used to handle sales information, including sales persons, customers, sales records and automobiles that are within our inventory. 
-We can split the sales microservices into two separate applications - sales API and sales poller. 
+The Sales microservices are used to handle sales information, including sales persons, customers, sales records and automobiles that are within our inventory.
+We can split the sales microservices into two separate applications - sales API and sales poller.
 
 Sales API is Django application that houses our models, URLs, and views. It can be accessed on Insomnia on port 8090.
 
-Sales poller is a polling application used to send periodic requests to Inventory API for automobile data. A new automobileVO instance is created in the Sales Microservice database for each instance of Automobile in the Inventory database if there is not already a corresponding AutomobileVO object. It is set to poll every 10 seconds but the time interval may be adjusted in the poll() function in poller.py. 
+Sales poller is a polling application used to send periodic requests to Inventory API for automobile data. A new automobileVO instance is created in the Sales Microservice database for each instance of Automobile in the Inventory database if there is not already a corresponding AutomobileVO object. It is set to poll every 10 seconds but the time interval may be adjusted in the poll() function in poller.py.
 ### Backend
 #### Models
 Sales API is a RESTful API with the following models and attributes:
-- SalesPerson 
+- SalesPerson
     - name
     - employee_number(unique integer value)
-- Customer 
+- Customer
     - name
     - address
     - phone_number(a PhoneNumber field, added django-phonenumber-field and phonenumbers in the requirements.txt. Only verifies inputs as phone numbers in Admin as of right now.)
@@ -272,7 +272,7 @@ Sales API is a RESTful API with the following models and attributes:
     - sales_person(ForeignKey to SalesPerson model)
     - customer(ForeignKey to Customer model)
     - sales_price
-- AutomobileVO 
+- AutomobileVO
     - vin(unique value)
     - import_href(unique value)
     - is_sold(boolean value that is default=False. This value gets updated to True once a new Sale Record is created with the corresponding vin number.)
@@ -332,7 +332,7 @@ Example JSON body to create a new sale record:
 ### Frontend React Application
 To view the Sales Microservice frontend application, navigate to localhost:3000 in your browser. Within the Sales dropdown in the navigation bar is the following:
 - **All sales history** - Shows a list view of all sales records
-- **Individual sales history** - Shows a list view of all sales records that may be filtered by sales person upon selecting a sales person in the dropdown menu. 
+- **Individual sales history** - Shows a list view of all sales records that may be filtered by sales person upon selecting a sales person in the dropdown menu.
 - **Log a sale** - A form to create a new sale record. Only automobiles that have not been sold will be displayed in the dropdown when selecting an automobile. Fill in the form with the automobile, sales person, customer, and sales price. Form clears upon successful sale record submission.
 - **Register a sales person** - A form to add a new sales person to the team. Takes in name and employee number (must be a unique value) of the new sales person. Form clears upon successful creation of a sales person.
 - **Add a customer** - A form to add a potential customer. Takes in name, address, and phone number of the new customer. Form clears upon successful creation of a sales person.
