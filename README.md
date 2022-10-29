@@ -192,7 +192,7 @@ Service Appointments:
 
 | Action | Method | URL |
 |--------|--------| -----|
-| List service appointments | GET | (http://localhost:8080/api/serviceappointments)
+| List service appointments | GET | (http://localhost:8080/api/serviceappointments/)
 | Create a service appointment | POST | (http://localhost:8080/api/serviceappointments/)
 | Update a service appointment | PUT | (http://localhost:8080/serviceappointments/:id))
 | Delete a specific service appointment | DELETE | (http://localhost:8080/serviceappointments/:id)
@@ -202,7 +202,7 @@ Technicians:
 
 | Action | Method | URL |
 |--------|--------| -----|
-| List technicians | GET | (http://localhost:8080/api/technicians)
+| List technicians | GET | (http://localhost:8080/api/technicians/)
 | Create a technician | POST | (http://localhost:8080/api/technicians/)
 
 
