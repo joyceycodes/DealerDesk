@@ -97,7 +97,8 @@ class SaleRecordForm extends React.Component {
                 salesPrice: "",
                 automobiles:[],
                 customers:[],
-                salesPersons:[]
+                salesPersons:[],
+                submitted: true
             };
 
             this.setState(cleared);
@@ -162,6 +163,9 @@ class SaleRecordForm extends React.Component {
 
                         <button className="btn btn-primary">Create</button>
                         </form>
+                        <div className={ this.state.submitted ? "alert alert-success mb-0 mt-3" :"alert alert-success d-none mb-0"} id="success-message">
+                            Sale has been recorded.
+                        </div>
                     </div>
                 </div>
           </div>

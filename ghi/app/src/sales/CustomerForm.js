@@ -54,13 +54,16 @@ class CustomerForm extends React.Component {
             const cleared = {
                 name:"",
                 address:"",
-                phoneNumber:""
+                phoneNumber:"",
+                submitted: true
             }
 
             this.setState(cleared);
             
         }
     }
+
+
 
     render () {
         return(
@@ -83,6 +86,9 @@ class CustomerForm extends React.Component {
                     </div>
                     <button className="btn btn-outline-dark">Create</button>
                     </form>
+                    <div className={ this.state.submitted ? "alert alert-success mb-0 mt-3" :"alert alert-success d-none mb-0"} id="success-message">
+                            Customer has been created.
+                    </div>
                 </div>
                 </div>
             </div>
