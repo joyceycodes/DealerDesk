@@ -341,4 +341,3 @@ To view the Sales Microservice frontend application, navigate to localhost:3000 
 ### Sales microservice
 - Verify phone number inputs on frontend and backend.
 - Have sales prices display as currency in sales records list.
-- Success message upon submission of the forms.
