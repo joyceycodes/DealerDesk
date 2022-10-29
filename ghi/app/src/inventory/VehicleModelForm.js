@@ -60,6 +60,7 @@ class VehicleModelForm extends React.Component {
             };
 
             this.setState(cleared);
+            this.props.getVehicleModels();
         }
 
     }
