@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 
 
@@ -13,6 +13,49 @@ function ServiceAppointmentsList(props) {
     const upperCaseChange = event => {
         setsearchVIN(event.target.value.toUpperCase());
     };
+
+
+    async function finishItem(appointmentid) {
+        const appointmentUrl = `http://localhost:8080${appointmentid}`;
+        const fetchOptions = {
+            method: "put",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+
+        await fetch(appointmentUrl, fetchOptions);
+        props.getAppointments();
+
+    }
+
+
+    async function deleteItem(appointmentid) {
+        const appointmentUrl = `http://localhost:8080${appointmentid}`;
+        const fetchOptions = {
+            method: 'delete',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+        await fetch(appointmentUrl, fetchOptions);
+        props.getAppointments();
+    }
+
+
+    async function addItemBack(appointmentid) {
+        const appointmentUrl = `http://localhost:8080${appointmentid}`;
+        const fetchOptions = {
+            method: "put",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+
+        await fetch(appointmentUrl, fetchOptions);
+        props.getAppointments();
+
+    }
 
 
     return (
@@ -88,6 +131,7 @@ function ServiceAppointmentsList(props) {
                                         <td>{appointment.time} </td>
                                         <td>{appointment.technician.name} </td>
                                         <td>{appointment.reason} </td>
+                                        <td><button type="button" className="btn btn-secondary" onClick={() => addItemBack(`${appointment.href}`)}>Add Back to List</button></td>
                                     </tr>
 
                                 )
@@ -102,33 +146,3 @@ function ServiceAppointmentsList(props) {
 }
 
 export default ServiceAppointmentsList;
-
-
-
-async function deleteItem(appointmentid) {
-    const appointmentUrl = `http://localhost:8080${appointmentid}`;
-    const fetchOptions = {
-        method: 'delete',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
-    await fetch(appointmentUrl, fetchOptions);
-    window.location.reload(true);
-}
-
-
-
-async function finishItem(appointmentid) {
-    const appointmentUrl = `http://localhost:8080${appointmentid}`;
-    const fetchOptions = {
-        method: "put",
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
-
-    await fetch(appointmentUrl, fetchOptions);
-    window.location.reload(true);
-
-}
