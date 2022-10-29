@@ -36,6 +36,7 @@ class ManufacturerForm extends React.Component {
             await response.json();
             const cleared = {
                 name:"",
+                submitted: true
             }
             this.setState(cleared);
 
@@ -56,6 +57,9 @@ class ManufacturerForm extends React.Component {
                     </div>
                     <button className="btn btn-outline-dark">Create</button>
                     </form>
+                    <div className={ this.state.submitted ? "alert alert-success mb-0 mt-3" :"alert alert-success d-none mb-0"} id="success-message">
+                            This manufacturer has been registered.
+                    </div>
                 </div>
                 </div> 
             </div>
