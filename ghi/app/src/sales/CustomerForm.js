@@ -32,7 +32,7 @@ class CustomerForm extends React.Component {
     async handleSubmit(event){
         event.preventDefault();
         const data = {...this.state};
-        console.log(data);
+      
         data.phone_number = data.phoneNumber;
         delete data.phoneNumber;
 

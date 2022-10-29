@@ -9,8 +9,9 @@ Team:
 
 ### Getting started:
 1. In your terminal, git clone this repository to your local computer using this link (https://gitlab.com/joyceyu96/project-beta.git)
-2. Run [docker volume create beta-data] in your terminal. This will create your database.
-3. Run [docker compose up --build] to build the docker image and run the docker containers.
+2. Run [code .] to start the project in VS Code.
+3. Run [docker volume create beta-data] in your terminal. This will create your database.
+4. Run [docker compose up --build] to build the docker image and run the docker containers.
 
 ### Creating a superuser:
 To create a superuser and log into the Admin application for any of the microservices:
@@ -118,7 +119,7 @@ All accessible from the Navigation bar located at the top of the window, under t
 
 Create a Manufacturer:
 
-```
+```json
 {
   "name": "Chrysler"
 }
@@ -127,7 +128,7 @@ Create a Manufacturer:
 
 Create a Vehicle Model:
 
-```
+```json
 {
   "name": "Sebring",
   "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
@@ -139,7 +140,7 @@ Create a Vehicle Model:
 
 Create an Automobile:
 
-```
+```json
 {
   "color": "red",
   "year": 2012,
@@ -230,7 +231,7 @@ All accessible from the Navigation bar located at the top of the window, under t
 
 Technicians:
 
-```
+```json
 {
 	"name": "Ray Rehberg",
 	"employee_number": 1
@@ -238,7 +239,7 @@ Technicians:
 ```
 
 Service Appointment:
-```
+```json
 {
 	"vin": "1A8HW58268F133559",
 	"owner": "Lindsey Carlson",
@@ -320,6 +321,8 @@ Sales Record:
 | Create a sales record | POST | (http://localhost:8090/api/salesrecords/)
 
 Example JSON body to create a new sale record:
+* Note: an automobile, customer, and sales person must already be in the database in order to successfully create a sale record.
+
 ```json
     {
     "automobile":"1C3CC5FB2AN120174",
@@ -328,6 +331,14 @@ Example JSON body to create a new sale record:
     "sales_price": 70000
     }
 ```
+
+AutomobileVO:
+
+| Action | Method | URL |
+|--------|--------| -----|
+| List automobileVOs | GET | (http://localhost:8090/api/automobileVOs/)
+
+
 
 ### Frontend React Application
 To view the Sales Microservice frontend application, navigate to localhost:3000 in your browser. Within the Sales dropdown in the navigation bar is the following:
