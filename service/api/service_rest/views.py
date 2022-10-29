@@ -89,10 +89,17 @@ def api_show_service_appointment(request, pk):
         return JsonResponse({"deleted": count>0 })
 
     else:
-        ServiceAppointment.objects.filter(id=pk).update(is_done=True)
-        return JsonResponse (
-            {"message": "This service appointment has been completed"}
-        )
+        if ServiceAppointment.objects.filter(id=pk, is_done=True):
+            ServiceAppointment.objects.filter(id=pk).update(is_done=False)
+            return JsonResponse (
+                {"message": "This appointment has been added back to the upcoming appointments list"}
+            )
+
+        else:
+            ServiceAppointment.objects.filter(id=pk).update(is_done=True)
+            return JsonResponse (
+                {"message": "This service appointment has been completed"}
+            )
 
 
 

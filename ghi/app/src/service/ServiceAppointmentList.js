@@ -43,6 +43,21 @@ function ServiceAppointmentsList(props) {
     }
 
 
+    async function addItemBack(appointmentid) {
+        const appointmentUrl = `http://localhost:8080${appointmentid}`;
+        const fetchOptions = {
+            method: "put",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+
+        await fetch(appointmentUrl, fetchOptions);
+        props.getAppointments();
+
+    }
+
+
     return (
         <>
             <form>
@@ -116,6 +131,7 @@ function ServiceAppointmentsList(props) {
                                         <td>{appointment.time} </td>
                                         <td>{appointment.technician.name} </td>
                                         <td>{appointment.reason} </td>
+                                        <td><button type="button" className="btn btn-secondary" onClick={() => addItemBack(`${appointment.href}`)}>Add Back to List</button></td>
                                     </tr>
 
                                 )
