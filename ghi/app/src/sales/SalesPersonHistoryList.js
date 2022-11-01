@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { NumericFormat } from 'react-number-format';
 
 function SalesPersonHistoryList(props) {
     const [selectSalesPerson, setSelectSalesPerson] = useState("");
-
+        
     return (
         <div>
             <div className="row mt-3">
@@ -34,14 +35,14 @@ function SalesPersonHistoryList(props) {
             </thead>
             <tbody>
                 {props.salesRecords
-                .filter(salesPerson => salesPerson.sales_person.employee_number == selectSalesPerson || selectSalesPerson == "")
+                .filter(salesPerson => salesPerson.sales_person.employee_number == selectSalesPerson || selectSalesPerson === "")
                 .map(saleRecord => {
                 return (
                     <tr key={saleRecord.automobile.vin}>
                         <td>{saleRecord.sales_person.name}</td>
                         <td>{saleRecord.customer.name}</td>
                         <td>{saleRecord.automobile.vin}</td>
-                        <td>{saleRecord.sales_price}</td>
+                        <td><NumericFormat value={saleRecord.sales_price} displayType={'text'} thousandSeparator={true} prefix={'$'}/></td>
                     </tr>
                 ) 
             })}

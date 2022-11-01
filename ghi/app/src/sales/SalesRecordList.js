@@ -1,4 +1,4 @@
-
+import { NumericFormat } from 'react-number-format';
 
 function SalesRecordList(props) {
     return (
@@ -22,7 +22,7 @@ function SalesRecordList(props) {
                         <td>{saleRecord.sales_person.employee_number}</td>
                         <td>{saleRecord.customer.name}</td>
                         <td>{saleRecord.automobile.vin}</td>
-                        <td>{saleRecord.sales_price}</td>
+                        <td><NumericFormat value={saleRecord.sales_price} displayType={'text'} thousandSeparator={true} prefix={'$'}/></td>
                     </tr>
                 ) 
             })}
