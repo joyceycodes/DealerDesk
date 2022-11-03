@@ -14,10 +14,21 @@ class AutomobileVO(models.Model):
 
     def get_api_url(self):
         return reverse("api_automobile_VO", kwargs={"pk": self.id})
+
 class SalesPerson(models.Model):
     name = models.CharField(max_length=100)
     employee_number = models.PositiveSmallIntegerField(unique=True)
 
+    def get_sales_total(self):
+        employee_sales = SaleRecord.objects.filter(sales_person=self.employee_number)
+        sales_total = 0
+        for sale in employee_sales:
+            sales_total += sale["sales_price"]
+            return sales_total
+    
+    def get_sold_count(self):
+        return SaleRecord.objects.filter(sales_person=self.id).count()
+        
     def __str__(self):
         return self.name
     

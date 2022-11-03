@@ -1,31 +1,47 @@
-import { NumericFormat } from 'react-number-format';
 
 function SalesRecordList(props) {
+
+    function handleSalesTotal () {
+        
+        return Object.values(props.salesRecords.reduce((acc, record) => {
+            if (acc[record.sales_person.employee_number]) {
+                acc[record.sales_person.employee_number].count += 1;
+                acc[record.sales_person.employee_number].total += record.sales_price;
+            } else {
+                acc[record.sales_person.employee_number] = record.sales_person;
+                acc[record.sales_person.employee_number].count = 1;
+                acc[record.sales_person.employee_number].total = record.sales_price;
+
+            }
+            return acc;
+        }, {})).sort((a,b)=> b.count-a.count); 
+    }
+
+    console.log(handleSalesTotal())
     return (
         <div>
-            <h1>All sales history</h1>
+            <h1 className="mt-3">Sales Leaderboard</h1>
             <table className="table table-striped">
             <thead>
                 <tr>
                     <th>Sales Person</th>
                     <th>Employee Number</th>
-                    <th>Customer</th>
-                    <th>VIN</th>
-                    <th>Sales Price</th>
+                    <th>Total Sales</th>
+                    <th>Cars Sold</th>
                 </tr>
             </thead>
             <tbody>
-                {props.salesRecords.map(saleRecord => {
+                {handleSalesTotal().map(salesPerson => {
                 return (
-                    <tr key={saleRecord.automobile.vin}>
-                        <td>{saleRecord.sales_person.name}</td>
-                        <td>{saleRecord.sales_person.employee_number}</td>
-                        <td>{saleRecord.customer.name}</td>
-                        <td>{saleRecord.automobile.vin}</td>
-                        <td><NumericFormat value={saleRecord.sales_price} displayType={'text'} thousandSeparator={true} prefix={'$'}/></td>
+                    <tr key={salesPerson.employee_number}>
+                        <td>{salesPerson.name}</td>
+                        <td>{salesPerson.employee_number}</td>
+                        <td>{salesPerson.total}</td>
+                        <td>{salesPerson.count}</td>                        
                     </tr>
-                ) 
-            })}
+                ) } )
+            }
+                
             </tbody>
             </table>
         </div>

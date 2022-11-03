@@ -15,7 +15,7 @@ function Navigation() {
             <NavDropdown title="Sales" id="basic-nav-dropdown">
               <NavDropdown.Item as={NavLink} to="salesrecords/">All Sales History</NavDropdown.Item>
               <NavDropdown.Item as={NavLink} to="salespersons/">Individual Sales History</NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="salesrecords/new">Log a Sale</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="salesrecords/new/">Log a Sale</NavDropdown.Item>
               <NavDropdown.Item as={NavLink} to="salespersons/new/">Register a Sales Person</NavDropdown.Item>
               <NavDropdown.Item as={NavLink} to="customers/new/">Add a Customer</NavDropdown.Item>
             </NavDropdown>
@@ -27,7 +27,7 @@ function Navigation() {
             <NavDropdown title="Inventory" id="basic-nav-dropdown">
               <NavDropdown.Item as={NavLink} to="manufacturers/">View Manufacturers</NavDropdown.Item>
               <NavDropdown.Item as={NavLink} to="manufacturers/new/">Add a Manufacturer</NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="vehicleModels/">View Vehicle Models</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="vehiclemodels/">View Vehicle Models</NavDropdown.Item>
               <NavDropdown.Item as={NavLink} to="vehiclemodels/new/">Add Vehicle Model</NavDropdown.Item>
               <NavDropdown.Item as={NavLink} to="automobiles/">Show All Automobiles in Inventory</NavDropdown.Item>
               <NavDropdown.Item as={NavLink} to="automobiles/new/">Add an Automobile to Inventory</NavDropdown.Item>

@@ -103,3 +103,5 @@ def api_sales_records(request):
 def api_automobile_VOs(request):
     autos = AutomobileVO.objects.all()
     return JsonResponse({"autos": autos}, encoder=AutomobileVOEncoder, safe=False)
+
+

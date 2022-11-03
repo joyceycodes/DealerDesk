@@ -351,4 +351,5 @@ To view the Sales Microservice frontend application, navigate to localhost:3000 
 ## Stretch goals for the future
 ### Sales microservice
 - Verify phone number inputs on frontend and backend.
-- Have sales prices display as currency in sales records list.
+- Sales leaderboard page that ranks the top sales people and shows total sales
+- Add date to sale record so we can filter by month
