@@ -118,7 +118,7 @@ async function getAutomobileVOs () {
             <Route path="new" element={<CustomerForm/>}  />
           </Route>
           <Route path="salesrecords">
-            <Route path="" element={<SalesRecordList salesRecords={salesRecords} salesPersons={salesPersons}/>} />
+            <Route path="" element={<SalesRecordList salesRecords={salesRecords}/>} />
             <Route path="new" element={<SaleRecordForm getSalesRecords={getSalesRecords}/>}  />
           </Route>
           <Route path="manufacturers">

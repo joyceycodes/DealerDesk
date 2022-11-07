@@ -13,7 +13,7 @@ function Navigation() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <NavDropdown title="Sales" id="basic-nav-dropdown">
-              <NavDropdown.Item as={NavLink} to="salesrecords/">All Sales History</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="salesrecords/">Sales Leaderboard</NavDropdown.Item>
               <NavDropdown.Item as={NavLink} to="salespersons/">Individual Sales History</NavDropdown.Item>
               <NavDropdown.Item as={NavLink} to="salesrecords/new/">Log a Sale</NavDropdown.Item>
               <NavDropdown.Item as={NavLink} to="salespersons/new/">Register a Sales Person</NavDropdown.Item>

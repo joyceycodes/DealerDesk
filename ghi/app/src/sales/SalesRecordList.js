@@ -2,7 +2,7 @@
 function SalesRecordList(props) {
 
     function handleSalesTotal () {
-        
+        //Object.values makes it a list
         return Object.values(props.salesRecords.reduce((acc, record) => {
             if (acc[record.sales_person.employee_number]) {
                 acc[record.sales_person.employee_number].count += 1;
