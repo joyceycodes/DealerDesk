@@ -17,7 +17,6 @@ function SalesRecordList(props) {
         }, {})).sort((a,b)=> b.count-a.count); 
     }
 
-    console.log(handleSalesTotal())
     return (
         <div>
             <h1 className="mt-3">Sales Leaderboard</h1>

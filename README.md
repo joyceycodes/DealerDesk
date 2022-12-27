@@ -343,7 +343,7 @@ AutomobileVO:
 ### Frontend React Application
 To view the Sales Microservice frontend application, navigate to localhost:3000 in your browser. Within the Sales dropdown in the navigation bar is the following:
 - **Sales Leaderboard** - Ranked list of sales people on number of cars sold. Only sales people with at least one sales record will appear.
-**Individual sales history** - Shows a list view of all sales records that may be filtered by sales person upon selecting a sales person in the dropdown menu. 
+- **Individual sales history** - Shows a list view of all sales records that may be filtered by sales person upon selecting a sales person in the dropdown menu. 
 - **Log a sale** - A form to create a new sale record. Only automobiles that have not been sold will be displayed in the dropdown when selecting an automobile. Fill in the form with the automobile, sales person, customer, and sales price. Form clears and success message appears upon successful sale record submission.
 - **Register a sales person** - A form to add a new sales person to the team. Takes in name and employee number (must be a unique value) of the new sales person. Form clears and success message appears upon successful creation of a sales person.
 - **Add a customer** - A form to add a potential customer. Takes in name, address, and phone number of the new customer. Form clears and success message appears upon successful creation of a sales person.
